@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ION Website Preview</title>
+  <link rel="stylesheet" href="./global.css" />
+</head>
+<body>
+  <div id="preview-root"></div>
+
+  <script>
+    (function () {
+      var cacheBust = "?t=" + Date.now();
+      var root = document.getElementById("preview-root");
+
+      function stripOuterLayout(startHtml) {
+        var cleaned = startHtml;
+        cleaned = cleaned.replace(/^\s*<header[\s\S]*?<\/header>\s*/i, "");
+        cleaned = cleaned.replace(/\s*<footer[^>]*class=["'][^"']*footer-section[^"']*["'][\s\S]*?<\/footer>\s*$/i, "");
+        return cleaned.trim();
+      }
+
+      function loadScript(src) {
+        return new Promise(function (resolve, reject) {
+          var s = document.createElement("script");
+          s.src = src;
+          s.onload = resolve;
+          s.onerror = function () {
+            reject(new Error("Failed to load script: " + src));
+          };
+          document.body.appendChild(s);
+        });
+      }
+
+      function fetchText(path) {
+        return fetch(path + cacheBust).then(function (r) {
+          if (!r.ok) {
+            throw new Error("Failed to fetch " + path + " (HTTP " + r.status + ")");
+          }
+          return r.text();
+        });
+      }
+
+      function formatError(err) {
+        if (!err) return "Unknown error";
+        if (err instanceof Error && err.message) return err.message;
+        if (typeof err === "object") {
+          try { return JSON.stringify(err); } catch (e) { return String(err); }
+        }
+        return String(err);
+      }
+
+      Promise.all([
+        fetchText("./global.html"),
+        fetchText("./start.html")
+      ]).then(function (parts) {
+        var globalHtml = parts[0];
+        var startHtml = parts[1];
+
+        var pageContent = stripOuterLayout(startHtml);
+        var composed = globalHtml.indexOf("{{content}}") >= 0
+          ? globalHtml.replace("{{content}}", pageContent)
+          : startHtml;
+
+        root.innerHTML = composed;
+
+        return loadScript("./global.js" + cacheBust)
+          .then(function () {
+            document.dispatchEvent(new Event("DOMContentLoaded", { bubbles: true }));
+          });
+      }).catch(function (err) {
+        root.innerHTML = "<pre style='padding:16px;color:#b91c1c'>Preview failed to load: " + formatError(err) + "</pre>";
+        console.error("Preview load error:", err);
+      });
+    })();
+  </script>
+</body>
+</html>
