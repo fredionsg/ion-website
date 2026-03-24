@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Institute of Neurodiversity Singapore</title>
+    <!-- Organic Tech Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=IBM+Plex+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+  <script type="module" crossorigin src="/assets/index-CuQGnIyo.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CAyU29jZ.css">
+</head>
+
+<body>
+    <!-- Global Noise Overlay -->
+    <svg style="position:fixed; top:0; left:0; width:0; height:0; pointer-events:none; z-index:9999;">
+        <filter id="noiseFilter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+        </filter>
+    </svg>
+    <div id="noise-overlay"
+        style="position:fixed; top:0; left:0; right:0; bottom:0; z-index:9998; pointer-events:none; opacity:0.05; filter:url(#noiseFilter);">
+    </div>
+
+    <div id="root"></div>
+</body>
+
+</html>
