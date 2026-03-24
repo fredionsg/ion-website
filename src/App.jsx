@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight, ArrowLeft, Menu, X, Share2, MapPin, Mail, Sparkles, Globe, ChevronLeft, ChevronRight, ChevronDown, User, Users, Heart, MessageSquare, ShieldAlert, GraduationCap, Users2, FileText, Gavel, Layout } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Menu, X, Share2, MapPin, Mail, Sparkles, Globe, ChevronLeft, ChevronRight, ChevronDown, User, Users, Heart, MessageSquare, ShieldAlert, GraduationCap, Users2, FileText, Gavel, Layout, Linkedin } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -974,21 +974,21 @@ function Whitepaper() {
 // ==========================================
 function Team() {
     const members = [
-        { name: "Hazleen Ahmad", role: "Chair", img: "WhatsAppImage2025-11-12at09.36.01-XT7G2dPryHCtnAP5vx4K6w.jpeg" },
-        { name: "Abdul Rohim Sarip", role: "President", img: "Screenshot2025-03-25150731.png" },
-        { name: "Dr. Atiqah Azhari", role: "Advisor", img: "ProfAtiqah_headshot-Go6OHhLTrZId7jl6nSdkSA.jpg" },
-        { name: "Ong Chee Keong", role: "Advisor", img: "WhatsAppImage2026-02-12at16.42.42-zP_wR0vx4hXKBFh6MZ3drQ.jpeg" },
-        { name: "Sid Hamid", role: "Strategic Associate", img: "ProfilePhoto_SidHamid-EW0ItbJDjPvdTfwNXPYM3A.jpg" },
-        { name: "Gayathri Ramaswami", role: "Treasurer", img: "gayathri-f0-LAw2ObHQYOin6okUxBw.jpg" },
-        { name: "Juanita Mega", role: "Partnerships & Fundraising", img: "juanita-uTwf_o-8XY2hkXof7Y2fKg.jpg" },
-        { name: "Sindhu Chengad", role: "Programmes & Community Engagement", img: "SindhuChengadHeadshot-zAPAp-oOmaWWvVmC-DkZvw.JPEG" },
-        { name: "Leonard Lim", role: "Corporate & Strategic Partnerships", img: "leonardlim-EtEiltfq54rpmTA_5OJaWw.jpeg" },
-        { name: "Shiyun Lim", role: "Strategic Insurance", img: "ML0802220295-VpLxypfvuBgFPcIUf9UukA.png" },
-        { name: "Dr Faisal Aman", role: "Education & Neurodiversity Advocacy", img: "faisalaman-CKECfItS-Pl95fkHAYYzjQ.jpg" },
-        { name: "Gene Kam", role: "Higher Education & Neurodiversity Advocacy", img: "genekam-pd8rcQ9Ik3WksMU5OydcCw.jpg" },
-        { name: "David Ng", role: "Advisor", img: "DavidNg-6fsEnI_TBQNiQs27wJX94A.jpeg" },
-        { name: "Subha Imtiaz", role: "Strategic Associate", img: "SubhaImtiaz-JsgUa2Dar8fNk7Ux71JhCA.jpeg" },
-        { name: "Hana Saemon Beck", role: "Strategic Associate", img: "HanaSaemon-Beck-eRTQvFpmBbcKb635v8hjng.jpg" }
+        { name: "Hazleen Ahmad", role: "Chair", img: "WhatsAppImage2025-11-12at09.36.01-XT7G2dPryHCtnAP5vx4K6w.jpeg", linkedin: "https://www.linkedin.com/in/hazleen/" },
+        { name: "Abdul Rohim Sarip", role: "President", img: "Screenshot2025-03-25150731.png", linkedin: "http://linkedin.com/in/a-rohim-sarip-bbm-pbm-57b78951" },
+        { name: "Dr. Atiqah Azhari", role: "Advisor", img: "ProfAtiqah_headshot-Go6OHhLTrZId7jl6nSdkSA.jpg", linkedin: "https://www.linkedin.com/in/atiqah-azhari" },
+        { name: "Ong Chee Keong", role: "Advisor", img: "WhatsAppImage2026-02-12at16.42.42-zP_wR0vx4hXKBFh6MZ3drQ.jpeg", linkedin: "https://www.linkedin.com/in/ong-chee-keong-pbm-cftp-gfi-chartered-fellow-6944b032" },
+        { name: "Sid Hamid", role: "Strategic Associate", img: "ProfilePhoto_SidHamid-EW0ItbJDjPvdTfwNXPYM3A.jpg", linkedin: "https://www.linkedin.com/in/wildtranstrickstery/" },
+        { name: "Gayathri Ramaswami", role: "Treasurer", img: "gayathri-f0-LAw2ObHQYOin6okUxBw.jpg", linkedin: "https://www.linkedin.com/in/gayathri-ramaswami" },
+        { name: "Juanita Mega", role: "Partnerships & Fundraising", img: "juanita-uTwf_o-8XY2hkXof7Y2fKg.jpg", linkedin: "https://www.linkedin.com/in/juanitamega" },
+        { name: "Sindhu Chengad", role: "Programmes & Community Engagement", img: "SindhuChengadHeadshot-zAPAp-oOmaWWvVmC-DkZvw.JPEG", linkedin: "https://www.linkedin.com/in/sindhuc" },
+        { name: "Leonard Lim", role: "Corporate & Strategic Partnerships", img: "leonardlim-EtEiltfq54rpmTA_5OJaWw.jpeg", linkedin: "https://www.linkedin.com/in/leonard-lim-640b42246" },
+        { name: "Shiyun Lim", role: "Strategic Insurance", img: "ML0802220295-VpLxypfvuBgFPcIUf9UukA.png", linkedin: "https://www.linkedin.com/in/limshiyun" },
+        { name: "Dr Faisal Aman", role: "Education & Neurodiversity Advocacy", img: "faisalaman-CKECfItS-Pl95fkHAYYzjQ.jpg", linkedin: "https://www.linkedin.com/in/dr-faisal-aman-phd-8b7669242" },
+        { name: "Gene Kam", role: "Higher Education & Neurodiversity Advocacy", img: "genekam-pd8rcQ9Ik3WksMU5OydcCw.jpg", linkedin: "https://www.linkedin.com/in/genekam" },
+        { name: "David Ng", role: "Advisor", img: "DavidNg-6fsEnI_TBQNiQs27wJX94A.jpeg", linkedin: "https://www.linkedin.com/in/david-ng-a2398236" },
+        { name: "Subha Imtiaz", role: "Strategic Associate", img: "SubhaImtiaz-JsgUa2Dar8fNk7Ux71JhCA.jpeg", linkedin: "https://www.linkedin.com/in/subhaimtiaz001" },
+        { name: "Hana Saemon Beck", role: "Strategic Associate", img: "HanaSaemon-Beck-eRTQvFpmBbcKb635v8hjng.jpg", linkedin: "https://www.linkedin.com/in/hana-saemon-beck" }
     ];
 
     return (
@@ -1017,8 +1017,21 @@ function Team() {
                                 />
                                 <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                             </div>
-                            <h3 className="font-heading font-bold text-dark text-lg leading-tight group-hover:text-primary transition-colors">{member.name}</h3>
-                            <p className="font-data text-[10px] text-dark/40 uppercase tracking-[0.2em] font-medium mt-2">{member.role}</p>
+                             <div className="flex flex-col items-center">
+                                <h3 className="font-heading font-bold text-dark text-lg leading-tight group-hover:text-primary transition-colors">{member.name}</h3>
+                                <p className="font-data text-[10px] text-dark/40 uppercase tracking-[0.2em] font-medium mt-2">{member.role}</p>
+                                {member.linkedin && (
+                                    <a 
+                                        href={member.linkedin} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer" 
+                                        className="mt-3 text-primary/40 hover:text-primary transition-all duration-300 transform hover:scale-110"
+                                        title={`${member.name}'s LinkedIn`}
+                                    >
+                                        <Linkedin size={16} strokeWidth={1.5} />
+                                    </a>
+                                )}
+                            </div>
                         </div>
                     ))}
                 </div>
