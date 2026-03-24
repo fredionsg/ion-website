@@ -1088,8 +1088,8 @@ function Invitation() {
                         </div>
 
                         <div className="grid grid-cols-2 gap-8">
-                            <a href="https://www.linkedin.com/company/institute-of-neurodiversity/" target="_blank" rel="noopener noreferrer" className="aspect-square rounded-[3rem] bg-background/5 border border-background/10 flex items-center justify-center hover:bg-[#3F7CBF] transition-all group">
-                                <Share2 size={32} className="opacity-20 group-hover:opacity-100 transition-opacity" />
+                            <a href="https://www.linkedin.com/company/institute-of-neurodiversity-singapore/" target="_blank" rel="noopener noreferrer" className="aspect-square rounded-[3rem] bg-background/5 border border-background/10 flex items-center justify-center hover:bg-[#3F7CBF] transition-all group">
+                                <Linkedin size={32} className="opacity-20 group-hover:opacity-100 transition-opacity" />
                             </a>
                             <a href="https://ioneurodiversity.org/" target="_blank" rel="noopener noreferrer" className="aspect-square rounded-[3rem] bg-background/5 border border-background/10 flex items-center justify-center hover:bg-background/10 transition-all group">
                                 <Globe size={32} className="opacity-20 group-hover:opacity-100 transition-opacity" />
@@ -1145,7 +1145,7 @@ function Footer() {
     return (
         <footer className="bg-[#0c0c0c] text-background/80 px-6 lg:px-16 pt-32 pb-12 overflow-hidden border-t border-background/5">
             <div className="max-w-7xl mx-auto flex flex-col gap-32">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 lg:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 lg:gap-8">
                     <div className="lg:col-span-2">
                         <img src="/Assets/Logo-01.png" alt="ION" className="h-10 w-auto mb-10 brightness-0 invert opacity-90" />
                         <h3 className="text-4xl font-drama italic text-background mb-6 leading-tight tracking-tighter">Institute of <br/>Neurodiversity.</h3>
@@ -1162,30 +1162,6 @@ function Footer() {
                                 <a href="#pillars" className="hover:text-accent transition-colors w-fit">Core Philosophy</a>
                                 <a href="#tuna-dialogue" className="hover:text-accent transition-colors w-fit">Leadership Dialogue</a>
                                 <a href="#team" className="hover:text-accent transition-colors w-fit">Board of Advisors</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="space-y-12">
-                        <div>
-                            <h4 className="font-data text-[10px] tracking-[0.3em] uppercase mb-10 text-primary/60">Connect</h4>
-                            <div className="flex flex-col gap-6 font-sans font-medium text-sm">
-                                <span className="flex items-center gap-4 opacity-40 italic"><MapPin size={16} /> Singapore HQ</span>
-                                <a href="mailto:comms@ioneurodiversity.sg" className="flex items-center gap-4 hover:text-accent font-bold"><Mail size={16} /> comms@ioneurodiversity.sg</a>
-                            </div>
-                        </div>
-                        <div className="flex gap-4 pt-4">
-                            <a 
-                                href="https://www.linkedin.com/company/institute-of-neurodiversity-singapore/" 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                className="w-10 h-10 rounded-full bg-background/5 border border-background/10 flex items-center justify-center opacity-40 hover:opacity-100 hover:border-primary transition-all cursor-pointer"
-                                title="ION Singapore LinkedIn"
-                            >
-                                <Linkedin size={16} />
-                            </a>
-                            <div className="w-10 h-10 rounded-full bg-background/5 border border-background/10 flex items-center justify-center opacity-40 hover:opacity-100 hover:border-primary transition-all cursor-pointer">
-                                <Globe size={16} />
                             </div>
                         </div>
                     </div>
