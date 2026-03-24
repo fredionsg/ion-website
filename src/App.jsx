@@ -1175,9 +1175,15 @@ function Footer() {
                             </div>
                         </div>
                         <div className="flex gap-4 pt-4">
-                            <div className="w-10 h-10 rounded-full bg-background/5 border border-background/10 flex items-center justify-center opacity-40 hover:opacity-100 hover:border-primary transition-all cursor-pointer">
-                                <Share2 size={16} />
-                            </div>
+                            <a 
+                                href="https://www.linkedin.com/company/institute-of-neurodiversity-singapore/" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="w-10 h-10 rounded-full bg-background/5 border border-background/10 flex items-center justify-center opacity-40 hover:opacity-100 hover:border-primary transition-all cursor-pointer"
+                                title="ION Singapore LinkedIn"
+                            >
+                                <Linkedin size={16} />
+                            </a>
                             <div className="w-10 h-10 rounded-full bg-background/5 border border-background/10 flex items-center justify-center opacity-40 hover:opacity-100 hover:border-primary transition-all cursor-pointer">
                                 <Globe size={16} />
                             </div>
