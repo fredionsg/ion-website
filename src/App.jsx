@@ -986,7 +986,7 @@ function Team() {
         { name: "Shiyun Lim", role: "Strategic Insurance", img: "ML0802220295-VpLxypfvuBgFPcIUf9UukA.png", linkedin: "https://www.linkedin.com/in/limshiyun" },
         { name: "Dr Faisal Aman", role: "Education & Neurodiversity Advocacy", img: "faisalaman-CKECfItS-Pl95fkHAYYzjQ.jpg", linkedin: "https://www.linkedin.com/in/dr-faisal-aman-phd-8b7669242" },
         { name: "Gene Kam", role: "Higher Education & Neurodiversity Advocacy", img: "genekam-pd8rcQ9Ik3WksMU5OydcCw.jpg", linkedin: "https://www.linkedin.com/in/genekam" },
-        { name: "David Ng", role: "Advisor", img: "DavidNg-6fsEnI_TBQNiQs27wJX94A.jpeg", linkedin: "https://www.linkedin.com/in/david-ng-a2398236", pos: "72% 10%", zoom: 2.8 },
+        { name: "David Ng", role: "Advisor", img: "david cropped.jpeg", linkedin: "https://www.linkedin.com/in/david-ng-a2398236" },
         { name: "Subha Imtiaz", role: "Strategic Associate", img: "SubhaImtiaz-JsgUa2Dar8fNk7Ux71JhCA.jpeg", linkedin: "https://www.linkedin.com/in/subhaimtiaz001" },
         { name: "Hana Saemon Beck", role: "Strategic Associate", img: "HanaSaemon-Beck-eRTQvFpmBbcKb635v8hjng.jpg", linkedin: "https://www.linkedin.com/in/hana-saemon-beck" }
     ];
