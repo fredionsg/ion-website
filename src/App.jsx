@@ -1086,7 +1086,7 @@ function Invitation() {
                              </div>
                              <div>
                                 <h3 className="text-3xl font-heading font-bold mb-2">Connect</h3>
-                                <a href="mailto:comms@ioneurodiversity.sg" className="text-xl font-sans underline underline-offset-8 block break-all font-medium">comms@ioneurodiversity.sg</a>
+                                <a href="mailto:comms@ioneurodiversity.sg" className="text-lg font-sans underline underline-offset-8 block font-medium">comms@ioneurodiversity.sg</a>
                              </div>
                              <p className="font-sans text-sm opacity-60 leading-relaxed uppercase tracking-widest font-bold">Inquiries & Partnerships</p>
                         </div>
