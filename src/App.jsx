@@ -843,11 +843,11 @@ function CaregiversCircle() {
                             </p>
                             <div className="bg-emerald-900/5 p-4 rounded-xl inline-block mt-4 border border-emerald-900/10">
                                 <p className="font-heading font-semibold text-emerald-950 text-xs tracking-wider uppercase mb-1">Next session:</p>
-                                <p className="font-sans text-sm">Thursday, 5th March 2026<br/>8.30pm – 9.30pm (via Zoom)</p>
+                                <p className="font-sans text-sm">Thursday, 2nd April 2026<br/>8.30pm – 9.30pm (via Zoom)</p>
                             </div>
                         </div>
                         <div className="flex justify-start">
-                            <a href="https://www.eventbrite.sg/e/caregivers-circle-a-safe-space-for-caregivers-of-neurodivergent-children-tickets-1982755675600?aff=oddtdtcreator" target="_blank" rel="noopener noreferrer" className="bg-emerald-950 text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-accent transition-all inline-flex items-center gap-3 group">
+                            <a href="https://www.eventbrite.sg/e/caregivers-circle-a-safe-space-for-caregivers-of-neurodivergent-children-tickets-1984941906676?aff=oddtdtcreator" target="_blank" rel="noopener noreferrer" className="bg-emerald-950 text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-accent transition-all inline-flex items-center gap-3 group">
                                 <span>Go to Eventbrite</span>
                                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                             </a>
@@ -857,7 +857,7 @@ function CaregiversCircle() {
                     <div className="w-full lg:w-1/2">
                         <div className="rounded-[30px_12px_30px_12px] overflow-hidden border-[12px] border-emerald-900/5 shadow-2xl bg-white">
                             <img 
-                                src="/Assets/caregivers circle march 5th.jpeg" 
+                                src="/Assets/caregivers_circle_april_2026.jpg" 
                                 alt="Caregivers Circle" 
                                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-1000"
                             />
