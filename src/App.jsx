@@ -986,7 +986,7 @@ function Team() {
         { name: "Shiyun Lim", role: "Strategic Insurance", img: "ML0802220295-VpLxypfvuBgFPcIUf9UukA.png", linkedin: "https://www.linkedin.com/in/limshiyun" },
         { name: "Dr Faisal Aman", role: "Education & Neurodiversity Advocacy", img: "faisalaman-CKECfItS-Pl95fkHAYYzjQ.jpg", linkedin: "https://www.linkedin.com/in/dr-faisal-aman-phd-8b7669242" },
         { name: "Gene Kam", role: "Higher Education & Neurodiversity Advocacy", img: "genekam-pd8rcQ9Ik3WksMU5OydcCw.jpg", linkedin: "https://www.linkedin.com/in/genekam" },
-        { name: "David Ng", role: "Advisor", img: "DavidNg-6fsEnI_TBQNiQs27wJX94A.jpeg", linkedin: "https://www.linkedin.com/in/david-ng-a2398236", pos: "right top" },
+        { name: "David Ng", role: "Advisor", img: "DavidNg-6fsEnI_TBQNiQs27wJX94A.jpeg", linkedin: "https://www.linkedin.com/in/david-ng-a2398236", pos: "72% 10%", zoom: 2.8 },
         { name: "Subha Imtiaz", role: "Strategic Associate", img: "SubhaImtiaz-JsgUa2Dar8fNk7Ux71JhCA.jpeg", linkedin: "https://www.linkedin.com/in/subhaimtiaz001" },
         { name: "Hana Saemon Beck", role: "Strategic Associate", img: "HanaSaemon-Beck-eRTQvFpmBbcKb635v8hjng.jpg", linkedin: "https://www.linkedin.com/in/hana-saemon-beck" }
     ];
@@ -1012,8 +1012,11 @@ function Team() {
                                 <img
                                     src={`/Assets/${member.img}`}
                                     alt={member.name}
-                                    className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-1000 scale-110 group-hover:scale-100"
-                                    style={{ objectPosition: member.pos || 'center' }}
+                                    className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-1000"
+                                    style={{ 
+                                        objectPosition: member.pos || 'center',
+                                        transform: `scale(${member.zoom || 1.1})`
+                                    }}
                                     onError={(e) => { e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=F5F7FA&color=2E4036` }}
                                 />
                                 <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
