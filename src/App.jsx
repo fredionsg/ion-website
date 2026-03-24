@@ -1088,11 +1088,11 @@ function Invitation() {
                         </div>
 
                         <div className="grid grid-cols-2 gap-8">
-                            <a href="https://www.linkedin.com/company/institute-of-neurodiversity-singapore/" target="_blank" rel="noopener noreferrer" className="aspect-square rounded-[3rem] bg-background/5 border border-background/10 flex items-center justify-center hover:bg-[#3F7CBF] transition-all group">
-                                <Linkedin size={32} className="opacity-20 group-hover:opacity-100 transition-opacity" />
+                            <a href="https://www.linkedin.com/company/institute-of-neurodiversity-singapore/" target="_blank" rel="noopener noreferrer" className="aspect-square rounded-[3rem] bg-[#0077B5] border border-white/10 flex items-center justify-center hover:scale-[1.02] transition-all group shadow-lg">
+                                <Linkedin size={32} className="text-white opacity-100 transition-all group-hover:scale-110" />
                             </a>
-                            <a href="https://ioneurodiversity.org/" target="_blank" rel="noopener noreferrer" className="aspect-square rounded-[3rem] bg-background/5 border border-background/10 flex items-center justify-center hover:bg-background/10 transition-all group">
-                                <Globe size={32} className="opacity-20 group-hover:opacity-100 transition-opacity" />
+                            <a href="https://ioneurodiversity.org/" target="_blank" rel="noopener noreferrer" className="aspect-square rounded-[3rem] bg-primary border border-white/10 flex items-center justify-center hover:scale-[1.02] transition-all group shadow-lg">
+                                <img src="/Assets/Logo-01.png" alt="ION" className="h-8 w-auto brightness-0 invert opacity-100 transition-all group-hover:scale-110" />
                             </a>
                         </div>
                     </div>
