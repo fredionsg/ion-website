@@ -727,10 +727,15 @@ function LeadershipDialogue() {
     const prevSlide = () => setActiveIdx((prev) => (prev - 1 + slides.length) % slides.length);
 
     return (
-        <section className="py-20 bg-background" id="tuna-dialogue">
-            <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
-                <div className="mb-12 text-center">
-                    <h2 className="text-4xl lg:text-5xl font-drama italic text-dark tracking-tight">ION SG Leadership Dialogue</h2>
+        <section className="py-32 px-6 lg:px-16 bg-white" id="tuna-dialogue">
+            <div className="max-w-7xl mx-auto">
+                <div className="flex items-center gap-4 mb-16">
+                    <span className="font-data text-xs uppercase tracking-[0.2em] text-blue-900/40 font-bold">Events & Workshops</span>
+                    <div className="h-px bg-blue-900/10 flex-1"></div>
+                </div>
+                <div className="mb-16 text-center">
+                    <span className="font-data text-xs uppercase tracking-[0.2em] text-primary/60 font-bold mb-6 block">Upcoming Events</span>
+                    <h2 className="text-5xl md:text-7xl font-drama italic text-dark tracking-tight">ION SG Leadership Dialogue</h2>
                 </div>
                 
                 {/* Carousel Shell */}
@@ -799,9 +804,124 @@ function LeadershipDialogue() {
                         href="https://www.eventbrite.sg/e/ion-singapore-leadership-dialogue-tuna-world-brain-economy-readiness-tickets-1985038164586?aff=oddtdtcreator"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-3 group bg-accent hover:bg-accent/90 text-white font-bold py-4 px-10 rounded-full transition-all duration-300 font-sans text-sm tracking-wide shadow-lg shadow-accent/20 hover:shadow-xl hover:-translate-y-1"
+                        className="inline-flex items-center gap-3 group bg-blue-950 text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-accent transition-all shadow-lg hover:shadow-accent/20"
                     >
-                        <span>Register Here on Eventbrite</span>
+                        <span>Register on Eventbrite</span>
+                        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                    </a>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+// ==========================================
+// 5b. ION TRAINING (Carousel)
+// ==========================================
+function IONTraining() {
+    const [activeIdx, setActiveIdx] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
+    const slides = [
+        "/Assets/slide-01-cover.png",
+        "/Assets/slide-02-details-cta.png",
+        "/Assets/slide-03-what-youll-learn.png",
+        "/Assets/slide-04-why-it-matters.png",
+        "/Assets/slide-05-who-its-for.png",
+        "/Assets/slide-06-speaker.png"
+    ];
+
+    const brandColors = ['bg-primary', 'bg-ion-green', 'bg-ion-yellow', 'bg-accent', 'bg-primary', 'bg-ion-green'];
+
+    // Auto-advance
+    useEffect(() => {
+        if (isHovered) return;
+        const timer = setInterval(() => {
+            setActiveIdx((prev) => (prev + 1) % slides.length);
+        }, 4500);
+        return () => clearInterval(timer);
+    }, [isHovered, slides.length]);
+
+    const nextSlide = () => setActiveIdx((prev) => (prev + 1) % slides.length);
+    const prevSlide = () => setActiveIdx((prev) => (prev - 1 + slides.length) % slides.length);
+
+    return (
+        <section className="py-32 px-6 lg:px-16 bg-background" id="ion-training">
+            <div className="max-w-7xl mx-auto">
+                <div className="mb-16 text-center">
+                    <span className="font-data text-xs uppercase tracking-[0.2em] text-primary/60 font-bold mb-6 block">Workshop</span>
+                    <h2 className="text-5xl md:text-7xl font-drama italic text-dark tracking-tight">Intro To Neurodiversity Workshop</h2>
+                    <p className="mt-4 text-sm font-data tracking-[0.2em] uppercase text-primary/70">In Partnership with SSA Academy</p>
+                    <p className="mt-4 font-sans font-light text-dark/50 max-w-xl mx-auto leading-relaxed text-lg">A practical 2-hour workshop on neurodiversity awareness, mindset shift, strengths-based inclusion, and psychologically safe workplaces.</p>
+                </div>
+
+                {/* Carousel Shell */}
+                <div
+                    className="relative w-full max-w-3xl mx-auto rounded-[2.5rem] overflow-hidden bg-[#f5f5f7] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] border-4 border-white ring-1 ring-dark/5 flex flex-col"
+                >
+                    {/* Top Progress Bars */}
+                    <div className="w-full pt-6 px-8 pb-4 flex gap-2">
+                        {slides.map((_, i) => (
+                            <div key={i} className="h-1.5 flex-1 bg-black/10 rounded-full overflow-hidden">
+                                <div
+                                    className={`h-full ${brandColors[i]} transition-all duration-[4.5s] ease-linear`}
+                                    style={{
+                                        width: i < activeIdx ? '100%' : i === activeIdx ? '100%' : '0%',
+                                        transitionDuration: i === activeIdx && !isHovered ? '4.5s' : '0s'
+                                    }}
+                                ></div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Viewport & Track */}
+                    <div
+                        className="relative w-full overflow-hidden flex px-8"
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
+                    >
+                        <div className="relative w-full aspect-square overflow-hidden rounded-xl shadow-sm border border-black/5 bg-white/50">
+                            {slides.map((slide, i) => (
+                                <div
+                                    key={i}
+                                    className="absolute inset-0 w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                                    style={{ transform: `translateX(${(i - activeIdx) * 100}%)` }}
+                                >
+                                    <img src={slide} alt={`Slide ${i + 1}`} className="w-full h-full object-cover" />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Bottom Controls */}
+                    <div className="w-full pb-6 pt-4 px-8 flex items-center justify-between gap-4">
+                        <button onClick={prevSlide} className="w-10 h-10 rounded-full bg-white hover:bg-gray-50 text-dark flex items-center justify-center transition-colors shrink-0 shadow-sm border border-black/5">
+                            <ChevronLeft size={20} />
+                        </button>
+
+                        <div className="flex-1 flex justify-center items-center gap-4">
+                            {slides.map((_, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => setActiveIdx(i)}
+                                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === activeIdx ? `${brandColors[i]} scale-125 shadow-sm` : 'bg-black/10 hover:bg-black/20'}`}
+                                ></button>
+                            ))}
+                        </div>
+
+                        <button onClick={nextSlide} className="w-10 h-10 rounded-full bg-white hover:bg-gray-50 text-dark flex items-center justify-center transition-colors shrink-0 shadow-sm border border-black/5">
+                            <ChevronRight size={20} />
+                        </button>
+                    </div>
+                </div>
+
+                <div className="mt-12 text-center">
+                    <a
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSe4I1I6UfmsUvr7wDtQo_U709PRmmHPGs5SwDi5A1QBSsUurQ/viewform"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-3 group bg-blue-950 text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-accent transition-all shadow-lg hover:shadow-accent/20"
+                    >
+                        <span>Register for Workshop</span>
                         <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                     </a>
                 </div>
@@ -1135,6 +1255,7 @@ export default function App() {
                 <WhoWeSupport />
                 <Philosophy />
                 <LeadershipDialogue />
+                <IONTraining />
                 <CaregiversCircle />
                 <Whitepaper />
                 <Team />
