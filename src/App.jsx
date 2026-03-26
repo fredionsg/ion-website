@@ -102,7 +102,7 @@ function Hero() {
         <section ref={containerRef} className="relative h-[100dvh] w-full overflow-hidden bg-dark flex items-end pb-24 lg:pb-32 px-6 lg:px-16" id="home">
             <div className="absolute inset-0 z-0">
                 <img
-                    src="/Assets/Neurodesign Roundtable 2025-6.jpg"
+                    src="/Assets/hero-optimized.webp"
                     alt="Neurodesign Roundtable"
                     className="w-full h-full object-cover opacity-50 mix-blend-luminosity grayscale-[30%]"
                 />
