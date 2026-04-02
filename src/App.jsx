@@ -708,7 +708,7 @@ function LeadershipDialogue() {
         "/Assets/slide-1--NerBnWf-sZJswuKcfBmfA.png",
         "/Assets/slide-2-KIN7Rnhm0L93rN21IuUw8g.png",
         "/Assets/slide-3-xCrQYvOt-lnmxjY2sx6oDQ.png",
-        "/Assets/slide-4-RY61D-y2yPkeDQmExduK6A.png",
+        "/Assets/slide-4.png",
         "/Assets/slide-5-wngjyaylFrXGJHrMq6iMAQ.png"
     ];
     
@@ -1093,12 +1093,9 @@ function Whitepaper() {
 // 8. TEAM SECTION
 // ==========================================
 function Team() {
-    const members = [
+    const boardMembers = [
         { name: "Hazleen Ahmad", role: "Chair", img: "WhatsAppImage2025-11-12at09.36.01-XT7G2dPryHCtnAP5vx4K6w.jpeg", linkedin: "https://www.linkedin.com/in/hazleen/" },
         { name: "Abdul Rohim Sarip", role: "President", img: "Screenshot2025-03-25150731.png", linkedin: "http://linkedin.com/in/a-rohim-sarip-bbm-pbm-57b78951" },
-        { name: "Dr. Atiqah Azhari", role: "Advisor", img: "ProfAtiqah_headshot-Go6OHhLTrZId7jl6nSdkSA.jpg", linkedin: "https://www.linkedin.com/in/atiqah-azhari" },
-        { name: "Ong Chee Keong", role: "Advisor", img: "WhatsAppImage2026-02-12at16.42.42-zP_wR0vx4hXKBFh6MZ3drQ.jpeg", linkedin: "https://www.linkedin.com/in/ong-chee-keong-pbm-cftp-gfi-chartered-fellow-6944b032" },
-        { name: "Sid Hamid", role: "Strategic Associate", img: "ProfilePhoto_SidHamid-EW0ItbJDjPvdTfwNXPYM3A.jpg", linkedin: "https://www.linkedin.com/in/wildtranstrickstery/" },
         { name: "Gayathri Ramaswami", role: "Treasurer", img: "gayathri-f0-LAw2ObHQYOin6okUxBw.jpg", linkedin: "https://www.linkedin.com/in/gayathri-ramaswami" },
         { name: "Juanita Mega", role: "Partnerships & Fundraising", img: "juanita-uTwf_o-8XY2hkXof7Y2fKg.jpg", linkedin: "https://www.linkedin.com/in/juanitamega" },
         { name: "Sindhu Chengad", role: "Programmes & Community Engagement", img: "SindhuChengadHeadshot-zAPAp-oOmaWWvVmC-DkZvw.JPEG", linkedin: "https://www.linkedin.com/in/sindhuc" },
@@ -1106,61 +1103,94 @@ function Team() {
         { name: "Shiyun Lim", role: "Strategic Insurance", img: "ML0802220295-VpLxypfvuBgFPcIUf9UukA.png", linkedin: "https://www.linkedin.com/in/limshiyun" },
         { name: "Dr Faisal Aman", role: "Education & Neurodiversity Advocacy", img: "faisalaman-CKECfItS-Pl95fkHAYYzjQ.jpg", linkedin: "https://www.linkedin.com/in/dr-faisal-aman-phd-8b7669242" },
         { name: "Gene Kam", role: "Higher Education & Neurodiversity Advocacy", img: "genekam-pd8rcQ9Ik3WksMU5OydcCw.jpg", linkedin: "https://www.linkedin.com/in/genekam" },
-        { name: "David Ng", role: "Advisor", img: "david cropped.jpeg", linkedin: "https://www.linkedin.com/in/david-ng-a2398236" },
-        { name: "Subha Imtiaz", role: "Strategic Associate", img: "SubhaImtiaz-JsgUa2Dar8fNk7Ux71JhCA.jpeg", linkedin: "https://www.linkedin.com/in/subhaimtiaz001" },
-        { name: "Hana Saemon Beck", role: "Strategic Associate", img: "HanaSaemon-Beck-eRTQvFpmBbcKb635v8hjng.jpg", linkedin: "https://www.linkedin.com/in/hana-saemon-beck" }
     ];
 
+    const advisors = [
+        { name: "Dr. Atiqah Azhari", role: "Advisor", img: "ProfAtiqah_headshot-Go6OHhLTrZId7jl6nSdkSA.jpg", linkedin: "https://www.linkedin.com/in/atiqah-azhari" },
+        { name: "Ong Chee Keong", role: "Advisor", img: "WhatsAppImage2026-02-12at16.42.42-zP_wR0vx4hXKBFh6MZ3drQ.jpeg", linkedin: "https://www.linkedin.com/in/ong-chee-keong-pbm-cftp-gfi-chartered-fellow-6944b032" },
+        { name: "David Ng", role: "Advisor", img: "david cropped.jpeg", linkedin: "https://www.linkedin.com/in/david-ng-a2398236" },
+        { name: "Sid Hamid", role: "Strategic Associate", img: "ProfilePhoto_SidHamid-EW0ItbJDjPvdTfwNXPYM3A.jpg", linkedin: "https://www.linkedin.com/in/wildtranstrickstery/" },
+        { name: "Subha Imtiaz", role: "Strategic Associate", img: "SubhaImtiaz-JsgUa2Dar8fNk7Ux71JhCA.jpeg", linkedin: "https://www.linkedin.com/in/subhaimtiaz001" },
+        { name: "Hana Saemon Beck", role: "Strategic Associate", img: "HanaSaemon-Beck-eRTQvFpmBbcKb635v8hjng.jpg", linkedin: "https://www.linkedin.com/in/hana-saemon-beck" },
+    ];
+
+    const MemberCard = ({ member, i }) => (
+        <div key={i} className="group flex flex-col items-center text-center">
+            <div className="relative w-40 h-40 rounded-full overflow-hidden mb-6 border border-dark/5 shadow-sm group-hover:scale-105 group-hover:shadow-xl transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]">
+                <img
+                    src={`/Assets/${member.img}`}
+                    alt={member.name}
+                    className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-1000"
+                    style={{
+                        objectPosition: member.pos || 'center',
+                        transform: `scale(${member.zoom || 1.1})`
+                    }}
+                    onError={(e) => { e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=F5F7FA&color=2E4036` }}
+                />
+                <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            </div>
+             <div className="flex flex-col items-center">
+                <h3 className="font-heading font-bold text-dark text-lg leading-tight group-hover:text-primary transition-colors">{member.name}</h3>
+                <p className="font-data text-[10px] text-dark/40 uppercase tracking-[0.2em] font-medium mt-2">{member.role}</p>
+                {member.linkedin && (
+                    <a
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-3 text-primary/40 hover:text-primary transition-all duration-300 transform hover:scale-110"
+                        title={`${member.name}'s LinkedIn`}
+                    >
+                        <Linkedin size={16} strokeWidth={1.5} />
+                    </a>
+                )}
+            </div>
+        </div>
+    );
+
     return (
-        <section className="py-32 px-6 lg:px-16 bg-background relative" id="team">
+        <>
+        <section className="py-32 pb-16 px-6 lg:px-16 bg-background relative" id="team">
+            <div className="max-w-7xl mx-auto">
+                <div className="mb-24">
+                     <div className="flex items-center gap-4 mb-8">
+                        <span className="font-data text-xs uppercase tracking-[0.2em] text-primary/60">People // Leadership</span>
+                        <div className="h-px bg-primary/30 flex-1"></div>
+                    </div>
+                    <h2 className="text-5xl md:text-8xl font-drama italic text-dark mb-4 leading-none tracking-tighter">Board of Directors.</h2>
+                    <p className="font-sans text-xl text-dark/50 font-light italic leading-relaxed max-w-xl">
+                        The governing body steering ION's mission and strategic direction.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-16 gap-x-12">
+                    {boardMembers.map((member, i) => (
+                        <MemberCard key={i} member={member} i={i} />
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <section className="py-16 pb-32 px-6 lg:px-16 bg-background relative" id="advisors">
             <div className="max-w-7xl mx-auto">
                 <div className="mb-24">
                      <div className="flex items-center gap-4 mb-8">
                         <span className="font-data text-xs uppercase tracking-[0.2em] text-primary/60">People // Strategy</span>
                         <div className="h-px bg-primary/30 flex-1"></div>
                     </div>
-                    <h2 className="text-5xl md:text-8xl font-drama italic text-dark mb-4 leading-none tracking-tighter">Our Board.</h2>
+                    <h2 className="text-5xl md:text-8xl font-drama italic text-dark mb-4 leading-none tracking-tighter">Our Advisors.</h2>
                     <p className="font-sans text-xl text-dark/50 font-light italic leading-relaxed max-w-xl">
-                        A diverse multidisciplinary collective driving systemic transformation across the region.
+                        Expert voices guiding our strategy and amplifying our impact across sectors.
                     </p>
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-16 gap-x-12">
-                    {members.map((member, i) => (
-                        <div key={i} className="group flex flex-col items-center text-center">
-                            <div className="relative w-40 h-40 rounded-full overflow-hidden mb-6 border border-dark/5 shadow-sm group-hover:scale-105 group-hover:shadow-xl transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]">
-                                <img
-                                    src={`/Assets/${member.img}`}
-                                    alt={member.name}
-                                    className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-1000"
-                                    style={{ 
-                                        objectPosition: member.pos || 'center',
-                                        transform: `scale(${member.zoom || 1.1})`
-                                    }}
-                                    onError={(e) => { e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=F5F7FA&color=2E4036` }}
-                                />
-                                <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                            </div>
-                             <div className="flex flex-col items-center">
-                                <h3 className="font-heading font-bold text-dark text-lg leading-tight group-hover:text-primary transition-colors">{member.name}</h3>
-                                <p className="font-data text-[10px] text-dark/40 uppercase tracking-[0.2em] font-medium mt-2">{member.role}</p>
-                                {member.linkedin && (
-                                    <a 
-                                        href={member.linkedin} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer" 
-                                        className="mt-3 text-primary/40 hover:text-primary transition-all duration-300 transform hover:scale-110"
-                                        title={`${member.name}'s LinkedIn`}
-                                    >
-                                        <Linkedin size={16} strokeWidth={1.5} />
-                                    </a>
-                                )}
-                            </div>
-                        </div>
+                    {advisors.map((member, i) => (
+                        <MemberCard key={i} member={member} i={i} />
                     ))}
                 </div>
             </div>
         </section>
+        </>
     );
 }
 
@@ -1286,7 +1316,8 @@ function Footer() {
                                 <a href="#about" className="hover:text-accent transition-colors w-fit">History & Story</a>
                                 <a href="#pillars" className="hover:text-accent transition-colors w-fit">Core Philosophy</a>
                                 <a href="#tuna-dialogue" className="hover:text-accent transition-colors w-fit">Leadership Dialogue</a>
-                                <a href="#team" className="hover:text-accent transition-colors w-fit">Board of Advisors</a>
+                                <a href="#team" className="hover:text-accent transition-colors w-fit">Board of Directors</a>
+                                <a href="#advisors" className="hover:text-accent transition-colors w-fit">Advisors</a>
                             </div>
                         </div>
                     </div>
