@@ -1195,10 +1195,217 @@ function Team() {
 }
 
 // ==========================================
-// 9. INVITATION & CONTACT
+// 9. PARTICIPATE MODAL
+// ==========================================
+function ParticipateModal({ isOpen, onClose }) {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        organisation: '',
+        motivation: '',
+        areas: []
+    });
+    const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+
+    const pillars = ['Education', 'Mentorship', 'Community', 'Policy'];
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+            setFormData({ name: '', email: '', organisation: '', motivation: '', areas: [] });
+            setStatus('idle');
+        }
+        return () => { document.body.style.overflow = ''; };
+    }, [isOpen]);
+
+    const toggleArea = (area) => {
+        setFormData(prev => ({
+            ...prev,
+            areas: prev.areas.includes(area)
+                ? prev.areas.filter(a => a !== area)
+                : [...prev.areas, area]
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (formData.areas.length === 0) return;
+        setStatus('submitting');
+
+        const payload = {
+            name: formData.name,
+            email: formData.email,
+            organisation: formData.organisation || 'N/A',
+            motivation: formData.motivation,
+            areas: formData.areas.join(', ')
+        };
+
+        try {
+            const [emailRes] = await Promise.all([
+                // Email notification via FormSubmit
+                fetch('https://formsubmit.co/ajax/comms@ioneurodiversity.sg', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({
+                        ...payload,
+                        _subject: 'New Volunteer Application — ION Website',
+                        _template: 'table'
+                    })
+                }),
+                // Log to Google Sheets (fire-and-forget)
+                fetch(import.meta.env.VITE_SHEETS_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ ...payload, _key: import.meta.env.VITE_SHEETS_KEY })
+                }).catch(() => {})
+            ]);
+            if (emailRes.ok) {
+                setStatus('success');
+                setTimeout(() => onClose(), 2000);
+            } else {
+                setStatus('error');
+            }
+        } catch {
+            setStatus('error');
+        }
+    };
+
+    return (
+        <div
+            className={`fixed inset-0 z-50 flex items-center justify-center px-4 transition-all duration-300 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+            onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+        >
+            {/* Backdrop */}
+            <div className="absolute inset-0 bg-dark/40 backdrop-blur-md"></div>
+
+            {/* Modal card */}
+            <div className={`relative w-full max-w-lg bg-background rounded-3xl p-8 md:p-10 max-h-[90vh] overflow-y-auto shadow-2xl transition-all duration-300 ${isOpen ? 'scale-100 translate-y-0' : 'scale-95 translate-y-4'}`}>
+                {/* Close button */}
+                <button onClick={onClose} className="absolute top-5 right-5 text-dark/30 hover:text-dark transition-colors">
+                    <X size={20} />
+                </button>
+
+                {/* Header */}
+                <h3 className="text-4xl font-drama italic text-primary mb-1">Get Involved</h3>
+                <p className="font-sans text-sm text-dark/40 mb-8">Join us in building a neuroinclusive Singapore.</p>
+
+                {status === 'success' ? (
+                    <div className="flex flex-col items-center justify-center py-12 gap-4">
+                        <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                            <Heart size={28} className="text-primary" />
+                        </div>
+                        <h4 className="text-xl font-heading font-semibold text-dark">Thank you!</h4>
+                        <p className="font-sans text-sm text-dark/50 text-center">We'll be in touch soon.</p>
+                    </div>
+                ) : (
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                        {/* Name */}
+                        <div className="flex flex-col gap-1.5">
+                            <label className="font-heading text-xs font-semibold text-dark/50 tracking-wide uppercase">Name *</label>
+                            <input
+                                type="text"
+                                required
+                                value={formData.name}
+                                onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                                className="bg-white border border-dark/10 rounded-xl px-4 py-3 text-dark font-sans text-sm focus:border-primary focus:outline-none transition-colors placeholder:text-dark/25"
+                                placeholder="Your full name"
+                            />
+                        </div>
+
+                        {/* Email */}
+                        <div className="flex flex-col gap-1.5">
+                            <label className="font-heading text-xs font-semibold text-dark/50 tracking-wide uppercase">Email *</label>
+                            <input
+                                type="email"
+                                required
+                                value={formData.email}
+                                onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                                className="bg-white border border-dark/10 rounded-xl px-4 py-3 text-dark font-sans text-sm focus:border-primary focus:outline-none transition-colors placeholder:text-dark/25"
+                                placeholder="you@example.com"
+                            />
+                        </div>
+
+                        {/* Organisation */}
+                        <div className="flex flex-col gap-1.5">
+                            <label className="font-heading text-xs font-semibold text-dark/50 tracking-wide uppercase">Organisation <span className="text-dark/25 normal-case">(optional)</span></label>
+                            <input
+                                type="text"
+                                value={formData.organisation}
+                                onChange={(e) => setFormData(prev => ({ ...prev, organisation: e.target.value }))}
+                                className="bg-white border border-dark/10 rounded-xl px-4 py-3 text-dark font-sans text-sm focus:border-primary focus:outline-none transition-colors placeholder:text-dark/25"
+                                placeholder="Company or institution"
+                            />
+                        </div>
+
+                        {/* Motivation */}
+                        <div className="flex flex-col gap-1.5">
+                            <label className="font-heading text-xs font-semibold text-dark/50 tracking-wide uppercase">What motivates you to volunteer? *</label>
+                            <textarea
+                                required
+                                rows={3}
+                                value={formData.motivation}
+                                onChange={(e) => setFormData(prev => ({ ...prev, motivation: e.target.value }))}
+                                className="bg-white border border-dark/10 rounded-xl px-4 py-3 text-dark font-sans text-sm focus:border-primary focus:outline-none transition-colors resize-none placeholder:text-dark/25"
+                                placeholder="Tell us a bit about why you'd like to help..."
+                            />
+                        </div>
+
+                        {/* Areas — pill checkboxes */}
+                        <div className="flex flex-col gap-2.5">
+                            <label className="font-heading text-xs font-semibold text-dark/50 tracking-wide uppercase">Areas to contribute *</label>
+                            <div className="flex flex-wrap gap-2">
+                                {pillars.map(pillar => (
+                                    <button
+                                        key={pillar}
+                                        type="button"
+                                        onClick={() => toggleArea(pillar)}
+                                        className={`px-5 py-2 rounded-full font-sans text-sm font-medium transition-all duration-200 cursor-pointer
+                                            ${formData.areas.includes(pillar)
+                                                ? 'bg-primary/10 border-2 border-primary text-primary'
+                                                : 'bg-white border border-dark/10 text-dark/40 hover:border-dark/20 hover:text-dark/60'
+                                            }`}
+                                    >
+                                        {pillar}
+                                    </button>
+                                ))}
+                            </div>
+                            {formData.areas.length === 0 && status === 'error' && (
+                                <p className="font-sans text-xs text-accent">Please select at least one area.</p>
+                            )}
+                        </div>
+
+                        {/* Error message */}
+                        {status === 'error' && (
+                            <p className="font-sans text-sm text-accent">Something went wrong. Please try again or email us directly.</p>
+                        )}
+
+                        {/* Submit */}
+                        <button
+                            type="submit"
+                            disabled={status === 'submitting'}
+                            className="mt-2 flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-primary text-white hover:bg-primary/90 hover:shadow-lg hover:scale-[1.02] active:scale-[0.95] transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                        >
+                            <span className="font-heading font-semibold text-sm tracking-tight">
+                                {status === 'submitting' ? 'Sending...' : 'Submit Application'}
+                            </span>
+                            {status !== 'submitting' && <ArrowRight size={16} />}
+                        </button>
+                    </form>
+                )}
+            </div>
+        </div>
+    );
+}
+
+// ==========================================
+// 10. INVITATION & CONTACT
 // ==========================================
 function Invitation() {
+    const [showParticipate, setShowParticipate] = useState(false);
+
     return (
+        <>
         <section className="py-32 px-6 lg:px-16 bg-dark text-background relative overflow-hidden" id="contact">
             {/* Background elements */}
             <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent"></div>
@@ -1211,53 +1418,57 @@ function Invitation() {
                         <p className="text-2xl md:text-3xl font-sans font-light opacity-60 max-w-2xl leading-relaxed mb-16 italic">
                             Building a Singapore where neurodiversity is celebrated as our fundamental strength.
                         </p>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                            <div className="flex flex-col gap-6 group">
-                                <h3 className="text-3xl font-heading font-medium text-accent border-b border-background/10 pb-4 group-hover:border-accent transition-colors">Donate</h3>
-                                <p className="font-sans text-base opacity-40 leading-relaxed">Support our mission by funding essential resources for neurominorities.</p>
-                                <a href="mailto:comms@ioneurodiversity.sg" className="font-data text-xs tracking-widest uppercase hover:text-accent transition-all flex items-center gap-4">
-                                    Initiate Support <ArrowRight size={14} />
-                                </a>
-                            </div>
-                            <div className="flex flex-col gap-6 group">
-                                <h3 className="text-3xl font-heading font-medium text-primary border-b border-background/10 pb-4 group-hover:border-primary transition-colors">Participate</h3>
-                                <p className="font-sans text-base opacity-40 leading-relaxed">Become an ION volunteer or attend our public awareness workshops.</p>
-                                <a href="mailto:comms@ioneurodiversity.sg" className="font-data text-xs tracking-widest uppercase hover:text-primary transition-all flex items-center gap-4">
-                                    Get Involved <ArrowRight size={14} />
-                                </a>
-                            </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <a href="mailto:comms@ioneurodiversity.sg"
+                               className="group flex items-center justify-between gap-6 px-8 py-7 rounded-2xl border-2 border-accent bg-accent/15 hover:bg-accent/30 hover:border-accent hover:shadow-[0_0_30px_rgba(239,83,76,0.25)] hover:scale-[1.02] active:scale-[0.95] active:bg-accent/50 active:shadow-[inset_0_2px_8px_rgba(0,0,0,0.3)] active:brightness-110 transition-all duration-300 cursor-pointer">
+                                <div>
+                                    <h3 className="text-xl font-heading font-semibold text-accent mb-1 tracking-tight">Donate</h3>
+                                    <p className="font-sans text-sm text-background/40 group-hover:text-background/70 leading-relaxed transition-colors duration-300">Fund essential resources for neurominorities</p>
+                                </div>
+                                <ArrowRight size={18} className="text-accent group-hover:translate-x-2 transition-all duration-300 shrink-0" />
+                            </a>
+                            <button onClick={() => setShowParticipate(true)}
+                               className="group flex items-center justify-between gap-6 px-8 py-7 rounded-2xl border-2 border-primary bg-primary/15 hover:bg-primary/30 hover:border-primary hover:shadow-[0_0_30px_rgba(63,124,191,0.25)] hover:scale-[1.02] active:scale-[0.95] active:bg-primary/50 active:shadow-[inset_0_2px_8px_rgba(0,0,0,0.3)] active:brightness-110 transition-all duration-300 cursor-pointer text-left">
+                                <div>
+                                    <h3 className="text-xl font-heading font-semibold text-primary mb-1 tracking-tight">Participate</h3>
+                                    <p className="font-sans text-sm text-background/40 group-hover:text-background/70 leading-relaxed transition-colors duration-300">Volunteer or attend our awareness workshops</p>
+                                </div>
+                                <ArrowRight size={18} className="text-primary group-hover:translate-x-2 transition-all duration-300 shrink-0" />
+                            </button>
                         </div>
                     </div>
 
                     <div className="flex flex-col gap-12">
-                        <div className="p-12 rounded-[4rem] bg-accent text-dark flex flex-col gap-10 hover:translate-y-[-8px] transition-all duration-700 shadow-2xl relative group">
-                             <div className="absolute top-8 right-8 w-16 h-16 rounded-full border border-dark/10 flex items-center justify-center opacity-40">
+                        <a href="mailto:comms@ioneurodiversity.sg" className="p-12 rounded-[4rem] bg-accent/15 border-2 border-accent text-background flex flex-col gap-10 hover:bg-accent/30 hover:shadow-[0_0_30px_rgba(239,83,76,0.25)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 relative group cursor-pointer">
+                             <div className="absolute top-8 right-8 w-16 h-16 rounded-full border border-background/20 flex items-center justify-center opacity-40">
                                 <Mail size={32} />
                              </div>
                              <div>
-                                <h3 className="text-3xl font-heading font-bold mb-2">Connect</h3>
-                                <a href="mailto:comms@ioneurodiversity.sg" className="text-lg font-sans underline underline-offset-8 block font-medium">comms@ioneurodiversity.sg</a>
+                                <h3 className="text-3xl font-heading font-bold mb-2 text-accent">Connect</h3>
+                                <span className="text-lg font-sans block font-medium text-background/70 group-hover:text-background/90 transition-colors duration-300">comms@ioneurodiversity.sg</span>
                              </div>
-                             <p className="font-sans text-sm opacity-60 leading-relaxed uppercase tracking-widest font-bold">Inquiries & Partnerships</p>
-                        </div>
+                             <p className="font-sans text-sm text-background/40 group-hover:text-background/70 leading-relaxed uppercase tracking-widest font-bold transition-colors duration-300">Inquiries & Partnerships</p>
+                        </a>
 
                         <div className="grid grid-cols-2 gap-8">
-                            <a href="https://www.linkedin.com/company/institute-of-neurodiversity-singapore/" target="_blank" rel="noopener noreferrer" className="aspect-square rounded-[3rem] bg-[#0077B5] border border-white/10 flex items-center justify-center hover:scale-[1.02] transition-all group shadow-lg">
-                                <Linkedin size={32} className="text-white opacity-100 transition-all group-hover:scale-110" />
+                            <a href="https://www.linkedin.com/company/institute-of-neurodiversity-singapore/" target="_blank" rel="noopener noreferrer" className="aspect-square rounded-[3rem] bg-[#0077B5]/15 border-2 border-[#0077B5] flex items-center justify-center hover:bg-[#0077B5]/30 hover:shadow-[0_0_30px_rgba(0,119,181,0.25)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group cursor-pointer">
+                                <Linkedin size={32} className="text-[#0077B5] transition-all duration-300 group-hover:scale-110" />
                             </a>
-                            <a href="https://ioneurodiversity.org/" target="_blank" rel="noopener noreferrer" className="aspect-square rounded-[3rem] bg-primary border border-white/10 flex items-center justify-center hover:scale-[1.02] transition-all group shadow-lg">
-                                <img src="/Assets/Logo-01.png" alt="ION" className="h-8 w-auto brightness-0 invert opacity-100 transition-all group-hover:scale-110" />
+                            <a href="https://ioneurodiversity.org/" target="_blank" rel="noopener noreferrer" className="aspect-square rounded-[3rem] bg-primary/15 border-2 border-primary flex items-center justify-center hover:bg-primary/30 hover:shadow-[0_0_30px_rgba(63,124,191,0.25)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group cursor-pointer">
+                                <img src="/Assets/Logo-01.png" alt="ION" className="h-8 w-auto opacity-70 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110" />
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <ParticipateModal isOpen={showParticipate} onClose={() => setShowParticipate(false)} />
+        </>
     );
 }
 
 // ==========================================
-// 10. MAIN APP
+// 11. MAIN APP
 // ==========================================
 export default function App() {
     useEffect(() => {
