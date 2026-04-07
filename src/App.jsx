@@ -1401,9 +1401,7 @@ function ParticipateModal({ isOpen, onClose }) {
 // ==========================================
 // 10. INVITATION & CONTACT
 // ==========================================
-function Invitation() {
-    const [showParticipate, setShowParticipate] = useState(false);
-
+function Invitation({ showParticipate, setShowParticipate }) {
     return (
         <>
         <section className="py-32 px-6 lg:px-16 bg-dark text-background relative overflow-hidden" id="contact">
@@ -1471,6 +1469,20 @@ function Invitation() {
 // 11. MAIN APP
 // ==========================================
 export default function App() {
+    const [showParticipate, setShowParticipate] = useState(false);
+
+    useEffect(() => {
+        // Open participate modal if hash is #participate
+        if (window.location.hash === '#participate') {
+            setShowParticipate(true);
+        }
+        const onHashChange = () => {
+            if (window.location.hash === '#participate') setShowParticipate(true);
+        };
+        window.addEventListener('hashchange', onHashChange);
+        return () => window.removeEventListener('hashchange', onHashChange);
+    }, []);
+
     useEffect(() => {
         // Smooth scroll implementation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1500,7 +1512,7 @@ export default function App() {
                 <CaregiversCircle />
                 <Whitepaper />
                 <Team />
-                <Invitation />
+                <Invitation showParticipate={showParticipate} setShowParticipate={setShowParticipate} />
             </main>
             <Footer />
         </div>
