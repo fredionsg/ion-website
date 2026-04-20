@@ -1399,9 +1399,214 @@ function ParticipateModal({ isOpen, onClose }) {
 }
 
 // ==========================================
-// 10. INVITATION & CONTACT
+// 10. CORPORATE MEMBER MODAL
 // ==========================================
-function Invitation({ showParticipate, setShowParticipate }) {
+function CorporateMemberModal({ isOpen, onClose }) {
+    const [formData, setFormData] = useState({
+        company: '',
+        contact: '',
+        email: '',
+        role: '',
+        message: '',
+        interests: []
+    });
+    const [status, setStatus] = useState('idle');
+
+    const interestOptions = ['Inclusive Hiring', 'Sponsorship', 'Workplace Training', 'Advocacy'];
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+            setFormData({ company: '', contact: '', email: '', role: '', message: '', interests: [] });
+            setStatus('idle');
+        }
+        return () => { document.body.style.overflow = ''; };
+    }, [isOpen]);
+
+    const toggleInterest = (item) => {
+        setFormData(prev => ({
+            ...prev,
+            interests: prev.interests.includes(item)
+                ? prev.interests.filter(i => i !== item)
+                : [...prev.interests, item]
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (formData.interests.length === 0) return;
+        setStatus('submitting');
+
+        const payload = {
+            company: formData.company,
+            contact: formData.contact,
+            email: formData.email,
+            role: formData.role || 'N/A',
+            message: formData.message,
+            interests: formData.interests.join(', ')
+        };
+
+        try {
+            const [emailRes] = await Promise.all([
+                fetch('https://formsubmit.co/ajax/comms@ioneurodiversity.sg', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({
+                        ...payload,
+                        _subject: 'New Corporate Membership Inquiry — ION Website',
+                        _template: 'table'
+                    })
+                }),
+                fetch(import.meta.env.VITE_SHEETS_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ ...payload, _key: import.meta.env.VITE_CORP_SHEETS_KEY })
+                }).catch(() => {})
+            ]);
+            if (emailRes.ok) {
+                setStatus('success');
+                setTimeout(() => onClose(), 2000);
+            } else {
+                setStatus('error');
+            }
+        } catch {
+            setStatus('error');
+        }
+    };
+
+    return (
+        <div
+            className={`fixed inset-0 z-50 flex items-center justify-center px-4 transition-all duration-300 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+            onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+        >
+            <div className="absolute inset-0 bg-dark/40 backdrop-blur-md"></div>
+
+            <div className={`relative w-full max-w-lg bg-background rounded-3xl p-8 md:p-10 max-h-[90vh] overflow-y-auto shadow-2xl transition-all duration-300 ${isOpen ? 'scale-100 translate-y-0' : 'scale-95 translate-y-4'}`}>
+                <button onClick={onClose} className="absolute top-5 right-5 text-dark/30 hover:text-dark transition-colors">
+                    <X size={20} />
+                </button>
+
+                <h3 className="text-4xl font-drama italic text-ion-green mb-1">Corporate Membership</h3>
+                <p className="font-sans text-sm text-dark/40 mb-8">Partner with us to build a neuroinclusive workplace and society.</p>
+
+                {status === 'success' ? (
+                    <div className="flex flex-col items-center justify-center py-12 gap-4">
+                        <div className="w-16 h-16 rounded-full bg-ion-green/10 flex items-center justify-center">
+                            <Heart size={28} className="text-ion-green" />
+                        </div>
+                        <h4 className="text-xl font-heading font-semibold text-dark">Thank you!</h4>
+                        <p className="font-sans text-sm text-dark/50 text-center">We'll be in touch soon.</p>
+                    </div>
+                ) : (
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                        <div className="flex flex-col gap-1.5">
+                            <label className="font-heading text-xs font-semibold text-dark/50 tracking-wide uppercase">Company Name *</label>
+                            <input
+                                type="text"
+                                required
+                                value={formData.company}
+                                onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))}
+                                className="bg-white border border-dark/10 rounded-xl px-4 py-3 text-dark font-sans text-sm focus:border-ion-green focus:outline-none transition-colors placeholder:text-dark/25"
+                                placeholder="Your organisation"
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                            <label className="font-heading text-xs font-semibold text-dark/50 tracking-wide uppercase">Contact Person *</label>
+                            <input
+                                type="text"
+                                required
+                                value={formData.contact}
+                                onChange={(e) => setFormData(prev => ({ ...prev, contact: e.target.value }))}
+                                className="bg-white border border-dark/10 rounded-xl px-4 py-3 text-dark font-sans text-sm focus:border-ion-green focus:outline-none transition-colors placeholder:text-dark/25"
+                                placeholder="Full name"
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                            <label className="font-heading text-xs font-semibold text-dark/50 tracking-wide uppercase">Email *</label>
+                            <input
+                                type="email"
+                                required
+                                value={formData.email}
+                                onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                                className="bg-white border border-dark/10 rounded-xl px-4 py-3 text-dark font-sans text-sm focus:border-ion-green focus:outline-none transition-colors placeholder:text-dark/25"
+                                placeholder="you@company.com"
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                            <label className="font-heading text-xs font-semibold text-dark/50 tracking-wide uppercase">Role / Title <span className="text-dark/25 normal-case">(optional)</span></label>
+                            <input
+                                type="text"
+                                value={formData.role}
+                                onChange={(e) => setFormData(prev => ({ ...prev, role: e.target.value }))}
+                                className="bg-white border border-dark/10 rounded-xl px-4 py-3 text-dark font-sans text-sm focus:border-ion-green focus:outline-none transition-colors placeholder:text-dark/25"
+                                placeholder="e.g. HR Director, CSR Manager"
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                            <label className="font-heading text-xs font-semibold text-dark/50 tracking-wide uppercase">How would you like to partner with ION? *</label>
+                            <textarea
+                                required
+                                rows={3}
+                                value={formData.message}
+                                onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                                className="bg-white border border-dark/10 rounded-xl px-4 py-3 text-dark font-sans text-sm focus:border-ion-green focus:outline-none transition-colors resize-none placeholder:text-dark/25"
+                                placeholder="Tell us about your goals and how we can work together..."
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-2.5">
+                            <label className="font-heading text-xs font-semibold text-dark/50 tracking-wide uppercase">Areas of interest *</label>
+                            <div className="flex flex-wrap gap-2">
+                                {interestOptions.map(item => (
+                                    <button
+                                        key={item}
+                                        type="button"
+                                        onClick={() => toggleInterest(item)}
+                                        className={`px-5 py-2 rounded-full font-sans text-sm font-medium transition-all duration-200 cursor-pointer
+                                            ${formData.interests.includes(item)
+                                                ? 'bg-ion-green/10 border-2 border-ion-green text-ion-green'
+                                                : 'bg-white border border-dark/10 text-dark/40 hover:border-dark/20 hover:text-dark/60'
+                                            }`}
+                                    >
+                                        {item}
+                                    </button>
+                                ))}
+                            </div>
+                            {formData.interests.length === 0 && status === 'error' && (
+                                <p className="font-sans text-xs text-accent">Please select at least one area.</p>
+                            )}
+                        </div>
+
+                        {status === 'error' && (
+                            <p className="font-sans text-sm text-accent">Something went wrong. Please try again or email us directly.</p>
+                        )}
+
+                        <button
+                            type="submit"
+                            disabled={status === 'submitting'}
+                            className="mt-2 flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-ion-green text-white hover:bg-ion-green/90 hover:shadow-lg hover:scale-[1.02] active:scale-[0.95] transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                        >
+                            <span className="font-heading font-semibold text-sm tracking-tight">
+                                {status === 'submitting' ? 'Sending...' : 'Submit Inquiry'}
+                            </span>
+                            {status !== 'submitting' && <ArrowRight size={16} />}
+                        </button>
+                    </form>
+                )}
+            </div>
+        </div>
+    );
+}
+
+// ==========================================
+// 11. INVITATION & CONTACT
+// ==========================================
+function Invitation({ showParticipate, setShowParticipate, showCorporateMember, setShowCorporateMember }) {
     return (
         <>
         <section className="py-32 px-6 lg:px-16 bg-dark text-background relative overflow-hidden" id="contact">
@@ -1416,7 +1621,7 @@ function Invitation({ showParticipate, setShowParticipate }) {
                         <p className="text-2xl md:text-3xl font-sans font-light opacity-60 max-w-2xl leading-relaxed mb-16 italic">
                             Building a Singapore where neurodiversity is celebrated as our fundamental strength.
                         </p>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <a href="mailto:comms@ioneurodiversity.sg"
                                className="group flex items-center justify-between gap-6 px-8 py-7 rounded-2xl border-2 border-accent bg-accent/15 hover:bg-accent/30 hover:border-accent hover:shadow-[0_0_30px_rgba(239,83,76,0.25)] hover:scale-[1.02] active:scale-[0.95] active:bg-accent/50 active:shadow-[inset_0_2px_8px_rgba(0,0,0,0.3)] active:brightness-110 transition-all duration-300 cursor-pointer">
                                 <div>
@@ -1432,6 +1637,14 @@ function Invitation({ showParticipate, setShowParticipate }) {
                                     <p className="font-sans text-sm text-background/40 group-hover:text-background/70 leading-relaxed transition-colors duration-300">Volunteer or attend our awareness workshops</p>
                                 </div>
                                 <ArrowRight size={18} className="text-primary group-hover:translate-x-2 transition-all duration-300 shrink-0" />
+                            </button>
+                            <button onClick={() => setShowCorporateMember(true)}
+                               className="group flex items-center justify-between gap-6 px-8 py-7 rounded-2xl border-2 border-ion-green bg-ion-green/15 hover:bg-ion-green/30 hover:border-ion-green hover:shadow-[0_0_30px_rgba(118,198,145,0.25)] hover:scale-[1.02] active:scale-[0.95] active:bg-ion-green/50 active:shadow-[inset_0_2px_8px_rgba(0,0,0,0.3)] active:brightness-110 transition-all duration-300 cursor-pointer text-left">
+                                <div>
+                                    <h3 className="text-xl font-heading font-semibold text-ion-green mb-1 tracking-tight">Corporate Member</h3>
+                                    <p className="font-sans text-sm text-background/40 group-hover:text-background/70 leading-relaxed transition-colors duration-300">Partner with us to champion neuroinclusion</p>
+                                </div>
+                                <ArrowRight size={18} className="text-ion-green group-hover:translate-x-2 transition-all duration-300 shrink-0" />
                             </button>
                         </div>
                     </div>
@@ -1461,6 +1674,7 @@ function Invitation({ showParticipate, setShowParticipate }) {
             </div>
         </section>
         <ParticipateModal isOpen={showParticipate} onClose={() => setShowParticipate(false)} />
+        <CorporateMemberModal isOpen={showCorporateMember} onClose={() => setShowCorporateMember(false)} />
         </>
     );
 }
@@ -1470,6 +1684,7 @@ function Invitation({ showParticipate, setShowParticipate }) {
 // ==========================================
 export default function App() {
     const [showParticipate, setShowParticipate] = useState(false);
+    const [showCorporateMember, setShowCorporateMember] = useState(false);
 
     useEffect(() => {
         // Open participate modal if hash is #participate
@@ -1512,7 +1727,7 @@ export default function App() {
                 <CaregiversCircle />
                 <Whitepaper />
                 <Team />
-                <Invitation showParticipate={showParticipate} setShowParticipate={setShowParticipate} />
+                <Invitation showParticipate={showParticipate} setShowParticipate={setShowParticipate} showCorporateMember={showCorporateMember} setShowCorporateMember={setShowCorporateMember} />
             </main>
             <Footer />
         </div>
