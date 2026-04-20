@@ -1614,63 +1614,66 @@ function Invitation({ showParticipate, setShowParticipate, showCorporateMember, 
             <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent"></div>
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/10 blur-[120px] rounded-full"></div>
 
-            <div className="max-w-7xl mx-auto relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-24 items-center">
-                    <div className="lg:col-span-2">
-                        <h2 className="text-6xl md:text-[10rem] font-drama italic text-accent mb-12 leading-[0.8] tracking-tighter">Every mind<br/>deserves to thrive.</h2>
-                        <p className="text-2xl md:text-3xl font-sans font-light opacity-60 max-w-2xl leading-relaxed mb-16 italic">
-                            Building a Singapore where neurodiversity is celebrated as our fundamental strength.
-                        </p>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <a href="mailto:comms@ioneurodiversity.sg"
-                               className="group flex items-center justify-between gap-6 px-8 py-7 rounded-2xl border-2 border-accent bg-accent/15 hover:bg-accent/30 hover:border-accent hover:shadow-[0_0_30px_rgba(239,83,76,0.25)] hover:scale-[1.02] active:scale-[0.95] active:bg-accent/50 active:shadow-[inset_0_2px_8px_rgba(0,0,0,0.3)] active:brightness-110 transition-all duration-300 cursor-pointer">
-                                <div>
-                                    <h3 className="text-xl font-heading font-semibold text-accent mb-1 tracking-tight">Donate</h3>
-                                    <p className="font-sans text-sm text-background/40 group-hover:text-background/70 leading-relaxed transition-colors duration-300">Fund essential resources for neurominorities</p>
-                                </div>
-                                <ArrowRight size={18} className="text-accent group-hover:translate-x-2 transition-all duration-300 shrink-0" />
-                            </a>
-                            <button onClick={() => setShowParticipate(true)}
-                               className="group flex items-center justify-between gap-6 px-8 py-7 rounded-2xl border-2 border-primary bg-primary/15 hover:bg-primary/30 hover:border-primary hover:shadow-[0_0_30px_rgba(63,124,191,0.25)] hover:scale-[1.02] active:scale-[0.95] active:bg-primary/50 active:shadow-[inset_0_2px_8px_rgba(0,0,0,0.3)] active:brightness-110 transition-all duration-300 cursor-pointer text-left">
-                                <div>
-                                    <h3 className="text-xl font-heading font-semibold text-primary mb-1 tracking-tight">Participate</h3>
-                                    <p className="font-sans text-sm text-background/40 group-hover:text-background/70 leading-relaxed transition-colors duration-300">Volunteer or attend our awareness workshops</p>
-                                </div>
-                                <ArrowRight size={18} className="text-primary group-hover:translate-x-2 transition-all duration-300 shrink-0" />
-                            </button>
-                            <button onClick={() => setShowCorporateMember(true)}
-                               className="group flex items-center justify-between gap-6 px-8 py-7 rounded-2xl border-2 border-ion-green bg-ion-green/15 hover:bg-ion-green/30 hover:border-ion-green hover:shadow-[0_0_30px_rgba(118,198,145,0.25)] hover:scale-[1.02] active:scale-[0.95] active:bg-ion-green/50 active:shadow-[inset_0_2px_8px_rgba(0,0,0,0.3)] active:brightness-110 transition-all duration-300 cursor-pointer text-left">
-                                <div>
-                                    <h3 className="text-xl font-heading font-semibold text-ion-green mb-1 tracking-tight">Corporate Member</h3>
-                                    <p className="font-sans text-sm text-background/40 group-hover:text-background/70 leading-relaxed transition-colors duration-300">Partner with us to champion neuroinclusion</p>
-                                </div>
-                                <ArrowRight size={18} className="text-ion-green group-hover:translate-x-2 transition-all duration-300 shrink-0" />
-                            </button>
-                        </div>
-                    </div>
+            <div className="max-w-7xl mx-auto relative z-10 flex flex-col gap-16">
 
-                    <div className="flex flex-col gap-12">
-                        <a href="mailto:comms@ioneurodiversity.sg" className="p-12 rounded-[4rem] bg-accent/15 border-2 border-accent text-background flex flex-col gap-10 hover:bg-accent/30 hover:shadow-[0_0_30px_rgba(239,83,76,0.25)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 relative group cursor-pointer">
-                             <div className="absolute top-8 right-8 w-16 h-16 rounded-full border border-background/20 flex items-center justify-center opacity-40">
-                                <Mail size={32} />
-                             </div>
-                             <div>
-                                <h3 className="text-3xl font-heading font-bold mb-2 text-accent">Connect</h3>
-                                <span className="text-lg font-sans block font-medium text-background/70 group-hover:text-background/90 transition-colors duration-300">comms@ioneurodiversity.sg</span>
-                             </div>
-                             <p className="font-sans text-sm text-background/40 group-hover:text-background/70 leading-relaxed uppercase tracking-widest font-bold transition-colors duration-300">Inquiries & Partnerships</p>
+                {/* Heading */}
+                <div>
+                    <h2 className="text-6xl md:text-[10rem] font-drama italic text-accent mb-8 leading-[0.8] tracking-tighter">Every mind<br/>deserves to thrive.</h2>
+                    <p className="text-2xl md:text-3xl font-sans font-light opacity-60 max-w-2xl leading-relaxed italic">
+                        Building a Singapore where neurodiversity is celebrated as our fundamental strength.
+                    </p>
+                </div>
+
+                {/* 3 action cards */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <a href="mailto:comms@ioneurodiversity.sg"
+                       className="group flex items-center justify-between gap-6 px-8 py-7 rounded-2xl border-2 border-accent bg-accent/15 hover:bg-accent/30 hover:border-accent hover:shadow-[0_0_30px_rgba(239,83,76,0.25)] hover:scale-[1.02] active:scale-[0.95] active:bg-accent/50 active:shadow-[inset_0_2px_8px_rgba(0,0,0,0.3)] active:brightness-110 transition-all duration-300 cursor-pointer">
+                        <div>
+                            <h3 className="text-xl font-heading font-semibold text-accent mb-1 tracking-tight">Donate</h3>
+                            <p className="font-sans text-sm text-background/40 group-hover:text-background/70 leading-relaxed transition-colors duration-300">Fund essential resources for neurominorities</p>
+                        </div>
+                        <ArrowRight size={18} className="text-accent group-hover:translate-x-2 transition-all duration-300 shrink-0" />
+                    </a>
+                    <button onClick={() => setShowParticipate(true)}
+                       className="group flex items-center justify-between gap-6 px-8 py-7 rounded-2xl border-2 border-primary bg-primary/15 hover:bg-primary/30 hover:border-primary hover:shadow-[0_0_30px_rgba(63,124,191,0.25)] hover:scale-[1.02] active:scale-[0.95] active:bg-primary/50 active:shadow-[inset_0_2px_8px_rgba(0,0,0,0.3)] active:brightness-110 transition-all duration-300 cursor-pointer text-left">
+                        <div>
+                            <h3 className="text-xl font-heading font-semibold text-primary mb-1 tracking-tight">Participate</h3>
+                            <p className="font-sans text-sm text-background/40 group-hover:text-background/70 leading-relaxed transition-colors duration-300">Volunteer or attend our awareness workshops</p>
+                        </div>
+                        <ArrowRight size={18} className="text-primary group-hover:translate-x-2 transition-all duration-300 shrink-0" />
+                    </button>
+                    <button onClick={() => setShowCorporateMember(true)}
+                       className="group flex items-center justify-between gap-6 px-8 py-7 rounded-2xl border-2 border-ion-green bg-ion-green/15 hover:bg-ion-green/30 hover:border-ion-green hover:shadow-[0_0_30px_rgba(118,198,145,0.25)] hover:scale-[1.02] active:scale-[0.95] active:bg-ion-green/50 active:shadow-[inset_0_2px_8px_rgba(0,0,0,0.3)] active:brightness-110 transition-all duration-300 cursor-pointer text-left">
+                        <div>
+                            <h3 className="text-xl font-heading font-semibold text-ion-green mb-1 tracking-tight">Corporate Member</h3>
+                            <p className="font-sans text-sm text-background/40 group-hover:text-background/70 leading-relaxed transition-colors duration-300">Partner with us to champion neuroinclusion</p>
+                        </div>
+                        <ArrowRight size={18} className="text-ion-green group-hover:translate-x-2 transition-all duration-300 shrink-0" />
+                    </button>
+                </div>
+
+                {/* Connect + socials */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <a href="mailto:comms@ioneurodiversity.sg" className="md:col-span-2 p-10 rounded-[3rem] bg-accent/15 border-2 border-accent text-background flex flex-col gap-6 hover:bg-accent/30 hover:shadow-[0_0_30px_rgba(239,83,76,0.25)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 relative group cursor-pointer">
+                        <div className="absolute top-8 right-8 w-14 h-14 rounded-full border border-background/20 flex items-center justify-center opacity-40">
+                            <Mail size={28} />
+                        </div>
+                        <div>
+                            <h3 className="text-3xl font-heading font-bold mb-2 text-accent">Connect</h3>
+                            <span className="text-lg font-sans block font-medium text-background/70 group-hover:text-background/90 transition-colors duration-300">comms@ioneurodiversity.sg</span>
+                        </div>
+                        <p className="font-sans text-sm text-background/40 group-hover:text-background/70 leading-relaxed uppercase tracking-widest font-bold transition-colors duration-300">Inquiries & Partnerships</p>
+                    </a>
+                    <div className="grid grid-cols-2 gap-6">
+                        <a href="https://www.linkedin.com/company/institute-of-neurodiversity-singapore/" target="_blank" rel="noopener noreferrer" className="aspect-square rounded-[3rem] bg-[#0077B5]/15 border-2 border-[#0077B5] flex items-center justify-center hover:bg-[#0077B5]/30 hover:shadow-[0_0_30px_rgba(0,119,181,0.25)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group cursor-pointer">
+                            <Linkedin size={32} className="text-[#0077B5] transition-all duration-300 group-hover:scale-110" />
                         </a>
-
-                        <div className="grid grid-cols-2 gap-8">
-                            <a href="https://www.linkedin.com/company/institute-of-neurodiversity-singapore/" target="_blank" rel="noopener noreferrer" className="aspect-square rounded-[3rem] bg-[#0077B5]/15 border-2 border-[#0077B5] flex items-center justify-center hover:bg-[#0077B5]/30 hover:shadow-[0_0_30px_rgba(0,119,181,0.25)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group cursor-pointer">
-                                <Linkedin size={32} className="text-[#0077B5] transition-all duration-300 group-hover:scale-110" />
-                            </a>
-                            <a href="https://ioneurodiversity.org/" target="_blank" rel="noopener noreferrer" className="aspect-square rounded-[3rem] bg-primary/15 border-2 border-primary flex items-center justify-center hover:bg-primary/30 hover:shadow-[0_0_30px_rgba(63,124,191,0.25)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group cursor-pointer">
-                                <img src="/Assets/Logo-01.png" alt="ION" className="h-8 w-auto opacity-70 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110" />
-                            </a>
-                        </div>
+                        <a href="https://ioneurodiversity.org/" target="_blank" rel="noopener noreferrer" className="aspect-square rounded-[3rem] bg-primary/15 border-2 border-primary flex items-center justify-center hover:bg-primary/30 hover:shadow-[0_0_30px_rgba(63,124,191,0.25)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group cursor-pointer">
+                            <img src="/Assets/Logo-01.png" alt="ION" className="h-8 w-auto opacity-70 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110" />
+                        </a>
                     </div>
                 </div>
+
             </div>
         </section>
         <ParticipateModal isOpen={showParticipate} onClose={() => setShowParticipate(false)} />
