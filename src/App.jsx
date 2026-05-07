@@ -1109,6 +1109,7 @@ function Team() {
         { name: "Dr. Atiqah Azhari", role: "Advisor", img: "ProfAtiqah_headshot-Go6OHhLTrZId7jl6nSdkSA.jpg", linkedin: "https://www.linkedin.com/in/atiqah-azhari" },
         { name: "Ong Chee Keong", role: "Advisor", img: "WhatsAppImage2026-02-12at16.42.42-zP_wR0vx4hXKBFh6MZ3drQ.jpeg", linkedin: "https://www.linkedin.com/in/ong-chee-keong-pbm-cftp-gfi-chartered-fellow-6944b032" },
         { name: "David Ng", role: "Advisor", img: "david cropped.jpeg", linkedin: "https://www.linkedin.com/in/david-ng-a2398236" },
+        { name: "Veronika Linardi", role: "Advisor", img: "VeronikaLinardi.jpg", linkedin: "https://sg.linkedin.com/in/veronikalinardi" },
         { name: "Sid Hamid", role: "Strategic Associate", img: "ProfilePhoto_SidHamid-EW0ItbJDjPvdTfwNXPYM3A.jpg", linkedin: "https://www.linkedin.com/in/wildtranstrickstery/" },
         { name: "Subha Imtiaz", role: "Strategic Associate", img: "SubhaImtiaz-JsgUa2Dar8fNk7Ux71JhCA.jpeg", linkedin: "https://www.linkedin.com/in/subhaimtiaz001" },
         { name: "Hana Saemon Beck", role: "Strategic Associate", img: "HanaSaemon-Beck-eRTQvFpmBbcKb635v8hjng.jpg", linkedin: "https://www.linkedin.com/in/hana-saemon-beck" },
