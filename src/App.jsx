@@ -1196,6 +1196,100 @@ function Team() {
 }
 
 // ==========================================
+// 8.5. IMPACT ACTIVITIES
+// ==========================================
+function ImpactActivities() {
+    const events = [
+        {
+            tag: "Advocacy",
+            tagColor: "accent",
+            title: "The Purple Parade 2025",
+            description: "Marching alongside thousands at The Purple Parade — a celebration of all abilities, and a reminder that inclusion is a right, not a privilege. We stood with our community to call for a Singapore where every neurominority is understood, supported, and empowered to thrive.",
+            photos: ["pp-1.jpg", "pp-2.jpg", "pp-3.jpg"],
+        },
+        {
+            tag: "Thought Leadership",
+            tagColor: "primary",
+            title: "TUNA World & Brain Economy Forum",
+            description: "Our inaugural Singapore forum convened leaders to explore why neuroinclusion is critical to the future of work. From the rise of the brain economy to neurodivergent talent as strategic advantage, the conversation set the tone for how organisations must evolve in a turbulent, uncertain world.",
+            photos: ["tuna-1.jpg", "tuna-2.jpg", "tuna-3.jpg"],
+        },
+        {
+            tag: "Education",
+            tagColor: "ion-green",
+            title: "Republic Polytechnic Outreach",
+            description: "Our first neurodiversity awareness session at a tertiary institution. Combining neuroscience research, lived experience, and an immersive VR experience of the ADHD mind, we equipped lecturers and students with practical tools to build truly inclusive classrooms.",
+            photos: ["rp-1.jpg", "rp-2.jpg", "rp-3.jpg"],
+        },
+    ];
+
+    const colorClasses = {
+        accent: { text: "text-accent", bg: "bg-accent/10", border: "border-accent/30" },
+        primary: { text: "text-primary", bg: "bg-primary/10", border: "border-primary/30" },
+        "ion-green": { text: "text-ion-green", bg: "bg-ion-green/10", border: "border-ion-green/30" },
+    };
+
+    return (
+        <section className="py-32 px-6 lg:px-16 bg-background relative" id="impact">
+            <div className="max-w-7xl mx-auto">
+                <div className="mb-24">
+                    <div className="flex items-center gap-4 mb-8">
+                        <span className="font-data text-xs uppercase tracking-[0.2em] text-primary/60">Activities // 2025</span>
+                        <div className="h-px bg-primary/30 flex-1"></div>
+                    </div>
+                    <h2 className="text-5xl md:text-8xl font-drama italic text-dark mb-4 leading-none tracking-tighter">Impact in Action.</h2>
+                    <p className="font-sans text-xl text-dark/50 font-light italic leading-relaxed max-w-xl">
+                        From advocacy on the streets to forums shaping the future of work — moments that move our mission forward.
+                    </p>
+                </div>
+
+                <div className="flex flex-col gap-32">
+                    {events.map((event, i) => {
+                        const colors = colorClasses[event.tagColor];
+                        const reverse = i % 2 === 1;
+                        return (
+                            <div key={i} className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center ${reverse ? 'lg:[direction:rtl]' : ''}`}>
+                                {/* Photo collage */}
+                                <div className="relative grid grid-cols-2 gap-3 [direction:ltr]">
+                                    <img
+                                        src={`/Assets/events/${event.photos[0]}`}
+                                        alt={event.title}
+                                        className="row-span-2 w-full h-full object-cover rounded-3xl shadow-lg aspect-[3/4]"
+                                    />
+                                    <img
+                                        src={`/Assets/events/${event.photos[1]}`}
+                                        alt={event.title}
+                                        className="w-full h-full object-cover rounded-2xl shadow-md aspect-square"
+                                    />
+                                    <img
+                                        src={`/Assets/events/${event.photos[2]}`}
+                                        alt={event.title}
+                                        className="w-full h-full object-cover rounded-2xl shadow-md aspect-square"
+                                    />
+                                </div>
+
+                                {/* Text */}
+                                <div className="[direction:ltr]">
+                                    <span className={`inline-block font-data text-[10px] uppercase tracking-[0.2em] font-bold px-4 py-2 rounded-full border ${colors.bg} ${colors.text} ${colors.border} mb-6`}>
+                                        {event.tag}
+                                    </span>
+                                    <h3 className={`text-4xl md:text-5xl font-drama italic mb-6 leading-[0.95] tracking-tight ${colors.text}`}>
+                                        {event.title}
+                                    </h3>
+                                    <p className="font-sans text-lg text-dark/60 leading-relaxed font-light">
+                                        {event.description}
+                                    </p>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+// ==========================================
 // 9. PARTICIPATE MODAL
 // ==========================================
 function ParticipateModal({ isOpen, onClose }) {
@@ -1731,6 +1825,7 @@ export default function App() {
                 <CaregiversCircle />
                 <Whitepaper />
                 <Team />
+                <ImpactActivities />
                 <Invitation showParticipate={showParticipate} setShowParticipate={setShowParticipate} showCorporateMember={showCorporateMember} setShowCorporateMember={setShowCorporateMember} />
             </main>
             <Footer />
