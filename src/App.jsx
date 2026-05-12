@@ -939,11 +939,12 @@ function CaregiversCircle() {
             <div className="max-w-7xl mx-auto">
                  <div className="bg-white rounded-[40px_16px_40px_16px] shadow-sm border border-emerald-900/5 p-8 lg:p-16 flex flex-col lg:flex-row-reverse gap-16 items-center">
                     <div className="w-full lg:w-1/2">
-                        <div className="flex items-center gap-3 mb-8">
+                        <div className="flex items-center gap-3 mb-8 flex-wrap">
                              <div className="w-10 h-10 rounded-full bg-emerald-900/5 flex items-center justify-center">
                                 <Heart className="text-emerald-900" size={20} />
                             </div>
                             <span className="font-data text-xs uppercase tracking-widest text-emerald-900/40 font-bold">Safe Space</span>
+                            <span className="font-data text-[10px] uppercase tracking-widest text-emerald-950 font-bold px-3 py-1 rounded-full bg-emerald-900/10 border border-emerald-900/20">Monthly · Recurring</span>
                         </div>
                         <h2 className="text-5xl md:text-7xl font-drama italic text-emerald-950 mb-8 leading-[0.9]">Caregivers <br/>Circle.</h2>
                         <div className="flex flex-col gap-6 text-emerald-950/70 font-light leading-relaxed mb-10 border-l-2 border-emerald-900/10 pl-6 text-left">
@@ -951,7 +952,7 @@ function CaregiversCircle() {
                                 Caring for a neurodivergent child, youth, or adult often means carrying a lot quietly. The planning, advocacy, and emotional labour rarely pause. Many caregivers put careers, independence, and parts of themselves on hold to support someone they love, while holding an unspoken question about the future.
                             </p>
                             <p className="font-sans text-base">
-                                The <strong>ION Caregivers Circle</strong> is a monthly online space created for caregivers to pause, connect, and be heard without judgement or expectations.
+                                The <strong>ION Caregivers Circle</strong> is a recurring online gathering — held on the <strong>first Thursday of every month</strong> — created for caregivers to pause, connect, and be heard without judgement or expectations.
                             </p>
                             <ul className="list-none space-y-2 font-sans text-sm mt-2 mb-2">
                                 <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-emerald-900/40"></span> A safe, judgement-free space</li>
@@ -961,9 +962,16 @@ function CaregiversCircle() {
                             <p className="font-sans text-base">
                                 Come as you are. Share, listen, or simply sit with others who understand.
                             </p>
-                            <div className="bg-emerald-900/5 p-4 rounded-xl inline-block mt-4 border border-emerald-900/10">
-                                <p className="font-heading font-semibold text-emerald-950 text-xs tracking-wider uppercase mb-1">Next session:</p>
-                                <p className="font-sans text-sm">Thursday, 2nd April 2026<br/>8.30pm – 9.30pm (via Zoom)</p>
+                            <div className="bg-emerald-900/5 p-5 rounded-xl mt-4 border border-emerald-900/10 flex flex-col gap-3">
+                                <div>
+                                    <p className="font-heading font-semibold text-emerald-950 text-xs tracking-wider uppercase mb-1">When it meets</p>
+                                    <p className="font-sans text-sm">First Thursday of every month<br/>8.30pm – 9.30pm SGT (via Zoom)</p>
+                                </div>
+                                <div className="border-t border-emerald-900/10 pt-3">
+                                    <p className="font-heading font-semibold text-emerald-950 text-xs tracking-wider uppercase mb-1">Next session</p>
+                                    <p className="font-sans text-sm">Thursday, 2 July 2026 · 8.30pm SGT</p>
+                                    <p className="font-sans text-xs text-emerald-950/60 mt-2 italic">No session in June — taking a break for the school holidays. See you in July.</p>
+                                </div>
                             </div>
                         </div>
                         <div className="flex justify-start">
@@ -974,11 +982,11 @@ function CaregiversCircle() {
                         </div>
                     </div>
 
-                    <div className="w-full lg:w-1/2">
-                        <div className="rounded-[30px_12px_30px_12px] overflow-hidden border-[12px] border-emerald-900/5 shadow-2xl bg-white">
-                            <img 
-                                src="/Assets/caregivers_circle_april_2026.jpg" 
-                                alt="Caregivers Circle" 
+                    <div className="w-full lg:w-[58%] lg:-mx-6">
+                        <div className="rounded-[18px_8px_18px_8px] overflow-hidden shadow-2xl">
+                            <img
+                                src="/Assets/caregivers-circle-hd.png"
+                                alt="Caregivers Circle"
                                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-1000"
                             />
                         </div>
