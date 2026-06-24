@@ -4,3 +4,6 @@ dist
 .DS_Store
 *.local
 .env
+
+# UAE starter pack (separate project — not part of this site)
+ion-uae-starter/

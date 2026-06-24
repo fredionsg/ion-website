@@ -1110,7 +1110,6 @@ function Team() {
         { name: "Leonard Lim", role: "Corporate & Strategic Partnerships", img: "leonardlim-EtEiltfq54rpmTA_5OJaWw.jpeg", linkedin: "https://www.linkedin.com/in/leonard-lim-640b42246" },
         { name: "Shiyun Lim", role: "Strategic Insurance", img: "ML0802220295-VpLxypfvuBgFPcIUf9UukA.png", linkedin: "https://www.linkedin.com/in/limshiyun" },
         { name: "Dr Faisal Aman", role: "Education & Neurodiversity Advocacy", img: "faisalaman-CKECfItS-Pl95fkHAYYzjQ.jpg", linkedin: "https://www.linkedin.com/in/dr-faisal-aman-phd-8b7669242" },
-        { name: "Gene Kam", role: "Higher Education & Neurodiversity Advocacy", img: "genekam-pd8rcQ9Ik3WksMU5OydcCw.jpg", linkedin: "https://www.linkedin.com/in/genekam" },
     ];
 
     const advisors = [
