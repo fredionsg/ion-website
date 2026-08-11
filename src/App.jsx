@@ -952,7 +952,7 @@ function CaregiversCircle() {
                                 Caring for a neurodivergent child, youth, or adult often means carrying a lot quietly. The planning, advocacy, and emotional labour rarely pause. Many caregivers put careers, independence, and parts of themselves on hold to support someone they love, while holding an unspoken question about the future.
                             </p>
                             <p className="font-sans text-base">
-                                The <strong>ION Caregivers Circle</strong> is a recurring online gathering — held on the <strong>first Thursday of every month</strong> — created for caregivers to pause, connect, and be heard without judgement or expectations.
+                                The <strong>ION Caregivers Circle</strong> is a recurring online gathering — held <strong>monthly on a Thursday evening</strong> — created for caregivers to pause, connect, and be heard without judgement or expectations.
                             </p>
                             <ul className="list-none space-y-2 font-sans text-sm mt-2 mb-2">
                                 <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-emerald-900/40"></span> A safe, judgement-free space</li>
@@ -962,23 +962,42 @@ function CaregiversCircle() {
                             <p className="font-sans text-base">
                                 Come as you are. Share, listen, or simply sit with others who understand.
                             </p>
-                            <div className="bg-emerald-900/5 p-5 rounded-xl mt-4 border border-emerald-900/10 flex flex-col gap-3">
-                                <div>
-                                    <p className="font-heading font-semibold text-emerald-950 text-xs tracking-wider uppercase mb-1">When it meets</p>
-                                    <p className="font-sans text-sm">First Thursday of every month<br/>8.30pm – 9.30pm SGT (via Zoom)</p>
+                            <div className="mt-4 rounded-[20px_6px_20px_6px] border border-emerald-900/10 bg-emerald-900/5 overflow-hidden">
+                                <div className="flex items-stretch">
+                                    <div className="shrink-0 bg-emerald-950 text-white px-6 py-5 flex flex-col items-center justify-center text-center">
+                                        <span className="font-data text-[10px] uppercase tracking-[0.25em] text-white/50">Thu</span>
+                                        <span className="font-drama italic text-5xl leading-none my-1">13</span>
+                                        <span className="font-data text-[10px] uppercase tracking-[0.25em] text-white/50">Aug 26</span>
+                                    </div>
+                                    <div className="flex-1 px-5 py-5 flex flex-col justify-center gap-1.5">
+                                        <p className="font-data text-[10px] uppercase tracking-[0.25em] text-emerald-950/40 font-bold">Next session</p>
+                                        <p className="font-heading font-bold text-emerald-950 text-base leading-tight">8.30pm – 9.30pm SGT</p>
+                                        <p className="font-sans text-xs text-emerald-950/60">Online via Zoom · Monthly on a Thursday</p>
+                                    </div>
                                 </div>
-                                <div className="border-t border-emerald-900/10 pt-3">
-                                    <p className="font-heading font-semibold text-emerald-950 text-xs tracking-wider uppercase mb-1">Next session</p>
-                                    <p className="font-sans text-sm">Thursday, 2 July 2026 · 8.30pm SGT</p>
-                                    <p className="font-sans text-xs text-emerald-950/60 mt-2 italic">No session in June — taking a break for the school holidays. See you in July.</p>
+                                <div className="border-t border-emerald-900/10 px-5 py-3 flex items-center gap-2">
+                                    <span className="relative flex h-2 w-2 shrink-0">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-600 opacity-60"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-700"></span>
+                                    </span>
+                                    <p className="font-sans text-xs text-emerald-950/70">Registration is open — WhatsApp us to save your place.</p>
                                 </div>
                             </div>
                         </div>
-                        <div className="flex justify-start">
-                            <a href="https://www.eventbrite.sg/e/caregivers-circle-a-safe-space-for-caregivers-of-neurodivergent-children-tickets-1984941906676?aff=oddtdtcreator" target="_blank" rel="noopener noreferrer" className="bg-emerald-950 text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-accent transition-all inline-flex items-center gap-3 group">
-                                <span>Go to Eventbrite</span>
+                        <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
+                            <a
+                                href="https://wa.me/6598512582?text=Hi%20ION%2C%20I%27d%20like%20to%20register%20for%20the%20Caregivers%20Circle."
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-emerald-950 text-white pl-8 pr-7 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-accent transition-all inline-flex items-center gap-3 group shadow-sm hover:shadow-lg hover:-translate-y-0.5 duration-300"
+                            >
+                                <MessageSquare size={16} strokeWidth={2} />
+                                <span>WhatsApp to register</span>
                                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                             </a>
+                            <p className="font-sans text-sm text-emerald-950/60">
+                                or message <a href="https://wa.me/6598512582" target="_blank" rel="noopener noreferrer" className="font-data font-bold text-emerald-950 border-b border-emerald-900/20 hover:border-emerald-900 transition-colors">9851 2582</a>
+                            </p>
                         </div>
                     </div>
 
