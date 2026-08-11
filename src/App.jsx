@@ -1110,7 +1110,7 @@ function Team() {
         { name: "Leonard Lim", role: "Corporate & Strategic Partnerships", img: "leonardlim-EtEiltfq54rpmTA_5OJaWw.jpeg", linkedin: "https://www.linkedin.com/in/leonard-lim-640b42246" },
         { name: "Shiyun Lim", role: "Strategic Insurance", img: "ML0802220295-VpLxypfvuBgFPcIUf9UukA.png", linkedin: "https://www.linkedin.com/in/limshiyun" },
         { name: "Dr Faisal Aman", role: "Education & Neurodiversity Advocacy", img: "faisalaman-CKECfItS-Pl95fkHAYYzjQ.jpg", linkedin: "https://www.linkedin.com/in/dr-faisal-aman-phd-8b7669242" },
-        { name: "Dr Eunice Tan", role: "Higher Education & Neurodiversity Advocacy", img: "eunice-tan.jpg" },
+        { name: "Dr Eunice Tan", role: "Higher Education & Neurodiversity Advocacy", img: "eunice-tan.jpg", linkedin: "https://www.linkedin.com/in/eunice-meng-yin-tan-404626201" },
     ];
 
     const advisors = [
@@ -1118,7 +1118,7 @@ function Team() {
         { name: "Ong Chee Keong", role: "Advisor", img: "WhatsAppImage2026-02-12at16.42.42-zP_wR0vx4hXKBFh6MZ3drQ.jpeg", linkedin: "https://www.linkedin.com/in/ong-chee-keong-pbm-cftp-gfi-chartered-fellow-6944b032" },
         { name: "David Ng", role: "Advisor", img: "david cropped.jpeg", linkedin: "https://www.linkedin.com/in/david-ng-a2398236" },
         { name: "Veronika Linardi", role: "Advisor", img: "VeronikaLinardi.jpg", linkedin: "https://sg.linkedin.com/in/veronikalinardi" },
-        { name: "Waren Sheldon Humphries", role: "Advisor", img: "sheldon-humphries.jpg" },
+        { name: "Waren Sheldon Humphries", role: "Advisor", img: "sheldon-humphries.jpg", linkedin: "https://www.linkedin.com/in/warren-sheldon-humphries-15bbb075" },
         { name: "Sid Hamid", role: "Strategic Associate", img: "ProfilePhoto_SidHamid-EW0ItbJDjPvdTfwNXPYM3A.jpg", linkedin: "https://www.linkedin.com/in/wildtranstrickstery/" },
         { name: "Subha Imtiaz", role: "Strategic Associate", img: "SubhaImtiaz-JsgUa2Dar8fNk7Ux71JhCA.jpeg", linkedin: "https://www.linkedin.com/in/subhaimtiaz001" },
         { name: "Hana Saemon Beck", role: "Strategic Associate", img: "HanaSaemon-Beck-eRTQvFpmBbcKb635v8hjng.jpg", linkedin: "https://www.linkedin.com/in/hana-saemon-beck" },
