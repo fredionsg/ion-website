@@ -1872,6 +1872,13 @@ function Footer() {
                         <p className="font-sans font-light text-background/30 max-w-sm leading-relaxed text-lg">
                             Transforming the lives of neurominorities in Singapore through Awareness, Representation, and Research.
                         </p>
+
+                        <div className="mt-12">
+                            <h4 className="font-data text-[10px] tracking-[0.3em] uppercase mb-5 text-primary/60">Proud Member Of</h4>
+                            <a href="https://unglobalcompact.sg/" target="_blank" rel="noopener noreferrer" className="inline-block group">
+                                <img src="/Assets/ungc-network-singapore-white.png" alt="UN Global Compact Network Singapore" className="h-14 w-auto opacity-70 group-hover:opacity-100 transition-opacity duration-300" />
+                            </a>
+                        </div>
                     </div>
 
                     <div className="space-y-12">
