@@ -13,6 +13,10 @@ export default {
                 dark: '#111111',       // High contrast dark
                 'ion-green': '#76C691',
                 'ion-yellow': '#FFC614',
+                'ion-petrol': '#1E4048',   // Poster deep petrol
+                'ion-mist': '#E8E8DC',     // Poster ground, warm top
+                'ion-mist-cool': '#E1E5E4',// Poster ground, cool bottom
+                'ion-cream': '#EEF2F1',    // Poster cream on petrol
             },
             fontFamily: {
                 sans: ['"Plus Jakarta Sans"', 'sans-serif'],

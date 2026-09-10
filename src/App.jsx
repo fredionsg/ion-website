@@ -705,11 +705,11 @@ function LeadershipDialogue() {
     const [activeIdx, setActiveIdx] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
     const slides = [
-        "/Assets/slide-1--NerBnWf-sZJswuKcfBmfA.png",
-        "/Assets/slide-2-KIN7Rnhm0L93rN21IuUw8g.png",
-        "/Assets/slide-3-xCrQYvOt-lnmxjY2sx6oDQ.png",
-        "/Assets/slide-4.png",
-        "/Assets/slide-5-wngjyaylFrXGJHrMq6iMAQ.png"
+        "/Assets/slide-1--NerBnWf-sZJswuKcfBmfA.webp",
+        "/Assets/slide-2-KIN7Rnhm0L93rN21IuUw8g.webp",
+        "/Assets/slide-3-xCrQYvOt-lnmxjY2sx6oDQ.webp",
+        "/Assets/slide-4.webp",
+        "/Assets/slide-5-wngjyaylFrXGJHrMq6iMAQ.webp"
     ];
     
     const brandColors = ['bg-primary', 'bg-ion-green', 'bg-ion-yellow', 'bg-accent', 'bg-primary'];
@@ -822,12 +822,12 @@ function IONTraining() {
     const [activeIdx, setActiveIdx] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
     const slides = [
-        "/Assets/slide-01-cover.png",
-        "/Assets/slide-02-details-cta.png",
-        "/Assets/slide-03-what-youll-learn.png",
-        "/Assets/slide-04-why-it-matters.png",
-        "/Assets/slide-05-who-its-for.png",
-        "/Assets/slide-06-speaker.png"
+        "/Assets/slide-01-cover.webp",
+        "/Assets/slide-02-details-cta.webp",
+        "/Assets/slide-03-what-youll-learn.webp",
+        "/Assets/slide-04-why-it-matters.webp",
+        "/Assets/slide-05-who-its-for.webp",
+        "/Assets/slide-06-speaker.webp"
     ];
 
     const brandColors = ['bg-primary', 'bg-ion-green', 'bg-ion-yellow', 'bg-accent', 'bg-primary', 'bg-ion-green'];
@@ -930,6 +930,181 @@ function IONTraining() {
     );
 }
 
+
+// ==========================================
+// 5c. BEYOND US — FINANCIAL & ESTATE PLANNING (Carousel)
+// ==========================================
+// The slide deck tells the whole story: the question, the four topics, why it
+// matters, the speakers and the date. So the section around it stays quiet and
+// adds only what the deck can't — a scannable heading and a live register link
+// (the deck offers a QR code, which is no use on a web page).
+function BeyondUs() {
+    const [activeIdx, setActiveIdx] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
+    const [missing, setMissing] = useState({});
+
+    // Square (1080x1080) exports live in public/Assets/beyond-us/, saved as
+    // WebP at quality 88 — visually identical to the PNGs at a sixth the size.
+    // This array is the only thing to edit — any slide count works.
+    const slides = [
+        "/Assets/beyond-us/slide-01.webp",
+        "/Assets/beyond-us/slide-02.webp",
+        "/Assets/beyond-us/slide-03.webp",
+        "/Assets/beyond-us/slide-04.webp",
+        "/Assets/beyond-us/slide-05.webp"
+    ];
+
+    const eventbriteUrl = "https://www.eventbrite.sg/e/financial-estate-planning-for-neurodivergent-families-tickets-1998851938957?aff=oddtdtcreator";
+
+    // Poster rail: yellow, red, cream. Cycles, so the slide count is free.
+    const railColors = ['bg-ion-yellow', 'bg-accent', 'bg-ion-cream'];
+    const railColor = (i) => railColors[i % railColors.length];
+
+    // Auto-advance
+    useEffect(() => {
+        if (isHovered) return;
+        const timer = setInterval(() => {
+            setActiveIdx((prev) => (prev + 1) % slides.length);
+        }, 4500);
+        return () => clearInterval(timer);
+    }, [isHovered, slides.length]);
+
+    const nextSlide = () => setActiveIdx((prev) => (prev + 1) % slides.length);
+    const prevSlide = () => setActiveIdx((prev) => (prev - 1 + slides.length) % slides.length);
+
+    return (
+        <section
+            className="py-32 px-6 lg:px-16"
+            id="beyond-us"
+            style={{ background: 'linear-gradient(180deg, #E8E8DC 0%, #E1E5E4 100%)' }}
+        >
+            <div className="max-w-7xl mx-auto">
+                <div className="flex items-center gap-4 mb-16">
+                    <span className="font-data text-xs uppercase tracking-[0.2em] text-ion-petrol/40 font-bold">Beyond Us</span>
+                    <div className="h-px bg-ion-petrol/10 flex-1"></div>
+                </div>
+
+                <div className="max-w-3xl mx-auto">
+                    <div className="mb-14 text-center">
+                        <h2 className="font-drama font-bold text-5xl md:text-6xl leading-[1.02] tracking-tight text-ion-petrol">
+                            Financial &amp; Estate Planning<br className="hidden md:block" /> for Neurodivergent Families
+                        </h2>
+                        <p className="mt-6 font-sans font-light text-lg leading-relaxed text-ion-petrol/60 max-w-xl mx-auto">
+                            The first in a series of open conversations for families, held with practitioners who work in this space.
+                        </p>
+                    </div>
+
+                    {/* Carousel Shell — a petrol mount around the sage artwork */}
+                    <div className="relative w-full rounded-[2.5rem] overflow-hidden bg-ion-petrol shadow-[0_20px_50px_-12px_rgba(30,64,72,0.35)] flex flex-col">
+                        {/* Top Progress Bars */}
+                        <div className="w-full pt-6 px-8 pb-4 flex gap-2">
+                            {slides.map((_, i) => (
+                                <div key={i} className="h-1.5 flex-1 bg-ion-cream/15 rounded-full overflow-hidden">
+                                    <div
+                                        className={`h-full ${railColor(i)} transition-all duration-[4.5s] ease-linear`}
+                                        style={{
+                                            width: i <= activeIdx ? '100%' : '0%',
+                                            transitionDuration: i === activeIdx && !isHovered ? '4.5s' : '0s'
+                                        }}
+                                    ></div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Viewport & Track */}
+                        <div
+                            className="relative w-full overflow-hidden flex px-8"
+                            onMouseEnter={() => setIsHovered(true)}
+                            onMouseLeave={() => setIsHovered(false)}
+                        >
+                            <div className="relative w-full aspect-square overflow-hidden rounded-xl bg-ion-cream/5">
+                                {slides.map((slide, i) => (
+                                    <div
+                                        key={slide}
+                                        className="absolute inset-0 w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                                        style={{ transform: `translateX(${(i - activeIdx) * 100}%)` }}
+                                        aria-hidden={i !== activeIdx}
+                                    >
+                                        {missing[i] ? (
+                                            <div className="w-full h-full flex flex-col items-center justify-center gap-3 px-8 text-center">
+                                                <span className="font-data text-[10px] uppercase tracking-[0.25em] text-ion-yellow font-bold">Awaiting artwork</span>
+                                                <span className="font-data text-xs text-ion-cream/40 break-all">{slide.split('/').pop()}</span>
+                                            </div>
+                                        ) : (
+                                            <img
+                                                src={slide}
+                                                alt={`Financial and estate planning, slide ${i + 1} of ${slides.length}`}
+                                                className="w-full h-full object-cover"
+                                                onError={() => setMissing((prev) => ({ ...prev, [i]: true }))}
+                                            />
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Bottom Controls */}
+                        <div className="w-full pb-6 pt-4 px-8 flex items-center justify-between gap-4">
+                            <button
+                                onClick={prevSlide}
+                                aria-label="Previous slide"
+                                className="w-10 h-10 rounded-full bg-ion-cream/10 hover:bg-ion-cream/20 text-ion-cream flex items-center justify-center transition-colors shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ion-yellow"
+                            >
+                                <ChevronLeft size={20} />
+                            </button>
+
+                            <div className="flex-1 flex justify-center items-center gap-4">
+                                {slides.map((_, i) => (
+                                    <button
+                                        key={i}
+                                        onClick={() => setActiveIdx(i)}
+                                        aria-label={`Go to slide ${i + 1}`}
+                                        aria-current={i === activeIdx}
+                                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ion-yellow ${i === activeIdx ? `${railColor(i)} scale-125` : 'bg-ion-cream/20 hover:bg-ion-cream/40'}`}
+                                    ></button>
+                                ))}
+                            </div>
+
+                            <button
+                                onClick={nextSlide}
+                                aria-label="Next slide"
+                                className="w-10 h-10 rounded-full bg-ion-cream/10 hover:bg-ion-cream/20 text-ion-cream flex items-center justify-center transition-colors shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ion-yellow"
+                            >
+                                <ChevronRight size={20} />
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* When it is, and the one thing the deck can't give you: a live link */}
+                    <div className="mt-8 rounded-[2rem] bg-ion-petrol text-ion-cream px-8 py-7 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                        <div>
+                            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                                <span className="font-drama text-3xl">29 October 2026</span>
+                                <span className="text-ion-yellow" aria-hidden="true">·</span>
+                                <span className="font-data text-sm tracking-[0.15em]">7PM</span>
+                                <span className="font-sans text-sm text-ion-cream/50">Doors 6:30PM</span>
+                            </div>
+                            <p className="mt-2 font-sans text-xs text-ion-cream/60">
+                                <span className="font-data uppercase tracking-[0.2em] text-ion-yellow/80">Venue sponsor</span>
+                                {' '}Manulife Financial Advisers &mdash; Summit Planners
+                            </p>
+                        </div>
+
+                        <a
+                            href={eventbriteUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center gap-3 group bg-ion-cream text-ion-petrol px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-ion-yellow transition-colors shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ion-yellow"
+                        >
+                            <span>Register on Eventbrite</span>
+                            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
 // ==========================================
 // 6. ION CAREGIVERS CIRCLE
 // ==========================================
@@ -1850,6 +2025,7 @@ export default function App() {
                 <Philosophy />
                 <LeadershipDialogue />
                 <IONTraining />
+                <BeyondUs />
                 <CaregiversCircle />
                 <Whitepaper />
                 <Team />
@@ -1888,6 +2064,7 @@ function Footer() {
                                 <a href="#about" className="hover:text-accent transition-colors w-fit">History & Story</a>
                                 <a href="#pillars" className="hover:text-accent transition-colors w-fit">Core Philosophy</a>
                                 <a href="#tuna-dialogue" className="hover:text-accent transition-colors w-fit">Leadership Dialogue</a>
+                                <a href="#beyond-us" className="hover:text-accent transition-colors w-fit">Beyond Us</a>
                                 <a href="#team" className="hover:text-accent transition-colors w-fit">Board of Directors</a>
                                 <a href="#advisors" className="hover:text-accent transition-colors w-fit">Advisors</a>
                             </div>
